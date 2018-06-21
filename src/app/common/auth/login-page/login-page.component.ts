@@ -11,8 +11,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.seachObj = {
-      name: 3,
-      value: 5
+      'username': 'admin',
+      'password': '123456'
     };
     this.autoservice.getLogin(this.seachObj).subscribe((data) => {
       console.log(data);

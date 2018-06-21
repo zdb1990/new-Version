@@ -1,24 +1,16 @@
-import { HttpInterceptor, HttpRequest, HttpEvent, HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap, retry } from 'rxjs/operators';
+
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log(req);
-        if (req.url) {
-            let Baseurl = req.url;
-            // console.log(url);
-            if (!Baseurl.startsWith('http')) {
-                Baseurl = Baseurl.startsWith('/') ? Baseurl : `/${Baseurl}`;
-                Baseurl = `http://localhost:8085${Baseurl}`;
-                console.log(Baseurl);
-                req['url'] = Baseurl;
-                // req.clone({
-                //     url: url
-                // });
-                console.log(req);
-            }
-        }
-        return next.handle(req);
+        const Baseurl = 'http://10.1.104.63:4005';
+        const authReq = req.clone({
+            url: (Baseurl + req.url),
+        });
+        return next.handle(authReq);
     }
 }
