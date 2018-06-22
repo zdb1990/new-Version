@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AutoService } from './../auto.service';
+import { AuthService } from './../auto.service';
 @Component({
   selector: 'uxsino-login-page',
   templateUrl: './login-page.component.html',
@@ -7,18 +7,29 @@ import { AutoService } from './../auto.service';
 })
 export class LoginPageComponent implements OnInit {
   seachObj: any;
-  constructor(private autoservice: AutoService) { }
+  tokenInfo: any;
+  constructor(private authservice: AuthService) { }
 
   ngOnInit() {
     this.seachObj = {
       'username': 'admin',
       'password': '123456'
     };
-    this.autoservice.getLogin(this.seachObj).subscribe((data) => {
-      console.log(data);
+
+  }
+  login() {
+    this.authservice.getLogin(this.seachObj).subscribe((obj) => {
+      console.log(obj);
+      // this.tokenInfo = obj.data.token.access_token;
+      // console.log(this.tokenInfo);
+      // window.sessionStorage.setItem('usertoken', this.tokenInfo);
     }, error => {
-      console.log(error);
+      // console.log(error);
     });
   }
-
+  getUserList() {
+    this.authservice.getUseList().subscribe((obj) => {
+      console.log(obj);
+    });
+  }
 }
