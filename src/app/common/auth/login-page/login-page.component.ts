@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../auto.service';
+
 @Component({
   selector: 'uxsino-login-page',
   templateUrl: './login-page.component.html',
@@ -8,7 +10,7 @@ import { AuthService } from './../auto.service';
 export class LoginPageComponent implements OnInit {
   seachObj: any;
   tokenInfo: any;
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService, private route: Router) { }
 
   ngOnInit() {
     this.seachObj = {
@@ -24,12 +26,15 @@ export class LoginPageComponent implements OnInit {
       // console.log(this.tokenInfo);
       // window.sessionStorage.setItem('usertoken', this.tokenInfo);
     }, error => {
-      // console.log(error);
+      console.log(error);
     });
   }
   getUserList() {
     this.authservice.getUseList().subscribe((obj) => {
       console.log(obj);
     });
+  }
+  goHomePage() {
+    this.route.navigateByUrl('/home-page');
   }
 }
