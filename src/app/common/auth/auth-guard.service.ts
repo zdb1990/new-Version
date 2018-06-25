@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate {
     }
     /*ActivatedRouteSnapshot也可以用来遍历路由器状态树。 RouterStateSnapshot 代表路由器在某个时刻的状态。*/
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-        console.log(this.auth);
+        console.log(this.auth.isLoggedIn);
         if (this.auth.isLoggedIn) {
             return true;
         } else {

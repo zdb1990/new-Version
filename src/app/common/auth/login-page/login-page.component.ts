@@ -26,7 +26,6 @@ export class LoginPageComponent implements OnInit {
     this.authservice.Login(this.seachObj).subscribe((obj) => {
       console.log(obj);
       this.tokenOut['token'] = obj.data.token.access_token;
-      console.log(this.tokenOut);
     }, error => {
       console.log(error);
     });
