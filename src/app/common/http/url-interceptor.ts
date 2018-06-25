@@ -8,7 +8,6 @@ import { AuthService } from '../auth/auto.service';
 export class InterceptorService implements HttpInterceptor {
     constructor(private auth: AuthService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log(this.auth);
         const token = this.auth.token;
         const Baseurl = 'http://10.1.104.63:4005';
         const authReq = req.clone({

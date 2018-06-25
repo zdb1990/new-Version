@@ -6,22 +6,30 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
+// 配置表单和动态表单
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// 配置路由
+import { RouterModule } from '@angular/router';
 import zh from '@angular/common/locales/zh';
-import { RouterModule, Router } from '@angular/router';
 registerLocaleData(zh);
 @NgModule({
     imports: [
         BrowserAnimationsModule,
+        RouterModule,
         /** 导入 ng-zorro-antd 模块 **/
         NgZorroAntdModule,
         /**导入基本指令像模块NgIf，NgForOf... **/
         CommonModule,
-        RouterModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [
         BrowserAnimationsModule,
+        RouterModule,
         NgZorroAntdModule,
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [],
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],

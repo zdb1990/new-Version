@@ -7,16 +7,18 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 // 引入公用组件module
 import { CommonModule } from './common/common.module';
+// 引入所有组件的module
+import { ComponentsModule } from './components/components.module';
 // 配置路由
 import { AppRoutingModule } from './app-routing.module';
 // 引入公用的service
 import { ServiceModule } from './service/service.module';
 // 引入拦截器服务并使用
 import { InterceptorService } from './common/http/url-interceptor';
+import { AuthModule } from './common/auth/auth.module';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-
 registerLocaleData(zh);
 
 @NgModule({
@@ -29,8 +31,10 @@ registerLocaleData(zh);
     HttpClientModule,
     /** 导入 ng-zorro-antd 模块 **/
     NgZorroAntdModule,
-    AppRoutingModule,
+    AuthModule,
     CommonModule,
+    ComponentsModule,
+    AppRoutingModule,
     ServiceModule
   ],
   bootstrap: [AppComponent],

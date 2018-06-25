@@ -12,4 +12,4 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ],
     providers: [AuthGuardService],
 })
-export class AutoModule { }
+export class AuthModule { }
