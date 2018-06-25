@@ -27,7 +27,7 @@ export class AuthService {
     }
     // 退出登录
     Loginout(params?: any): Observable<any> {
-        console.log(params);
+        // console.log(params);
         return this.http.post('/logout', params)
             .pipe(
                 tap(
