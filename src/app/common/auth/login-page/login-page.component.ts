@@ -9,7 +9,6 @@ import { AuthService } from './../auto.service';
 })
 export class LoginPageComponent implements OnInit {
   seachObj: any;
-  tokenOut: any;
   constructor(private authservice: AuthService, private route: Router) { }
 
   ngOnInit() {
@@ -17,30 +16,20 @@ export class LoginPageComponent implements OnInit {
       'username': 'admin',
       'password': '123456'
     };
-    this.tokenOut = {
-      token: ''
-    };
+
   }
   // 用户登录
   login() {
     this.authservice.Login(this.seachObj).subscribe((obj) => {
       console.log(obj);
-      this.tokenOut['token'] = obj.data.token.access_token;
+      console.log(obj.success);
+
     }, error => {
       console.log(error);
     });
   }
-  // 退出登录
-  loginout() {
-    this.authservice.Loginout(this.tokenOut).subscribe((obj) => {
-      console.log(obj);
-    });
-  }
-  getUserList() {
-    this.authservice.getUseList().subscribe((obj) => {
-      console.log(obj);
-    });
-  }
+
+
   goHomePage() {
     this.route.navigateByUrl('/home-page');
   }

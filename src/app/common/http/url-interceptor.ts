@@ -24,10 +24,11 @@ export class InterceptorService implements HttpInterceptor {
                 (event: any) => {
                     if (event instanceof HttpResponse) {
                         if (event.status === 401) {
-                            console.log('失败');
+                            console.log('请求失败');
                             this.router.navigateByUrl('/login-page');
                             this.auth.isLoggedIn = false;
                             this.auth.token = '';
+                            console.log(this.auth);
                         }
                     }
                     return event;
@@ -36,9 +37,9 @@ export class InterceptorService implements HttpInterceptor {
                     if (err.status === 401) {
                         console.log('重新登陆');
                         this.router.navigateByUrl('/login-page');
-                        console.log(this.auth);
                         this.auth.isLoggedIn = false;
                         this.auth.token = '';
+                        console.log(this.auth);
                     }
                 }
             )

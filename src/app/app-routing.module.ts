@@ -4,11 +4,13 @@ import { LoginPageComponent } from './common/auth/login-page/login-page.componen
 import { AuthGuardService } from './common/auth/auth-guard.service';
 import { OverviewPageComponent } from './components/overview-page/overview-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { ChartPageComponent } from './components/chart-page/chart-page.component';
 const routes: Routes = [
     { path: '', redirectTo: '/login-page', pathMatch: 'full' },
+    { path: 'home-page', component: HomePageComponent },
     { path: 'login-page', component: LoginPageComponent },
-    { path: 'home-page', canActivate: [AuthGuardService], component: HomePageComponent },
-    { path: 'overview-page', canActivate: [AuthGuardService], component: OverviewPageComponent }
+    { path: 'overview-page', canActivate: [AuthGuardService], component: OverviewPageComponent },
+    { path: 'chart-page', component: ChartPageComponent }
 ];
 
 @NgModule({

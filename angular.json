@@ -30,7 +30,9 @@
                             "./src/assets/styles/reset.scss",
                             "./node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./node_modules/d3/dist/d3.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -80,7 +82,9 @@
                             "./src/assets/styles/reset.scss",
                             "./node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
                         ],
-                        "scripts": [],
+                        "scripts": [
+                            "./node_modules/d3/dist/d3.js"
+                        ],
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
