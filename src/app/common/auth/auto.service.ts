@@ -14,7 +14,7 @@ export class AuthService {
             .pipe(
                 tap(
                     obj => {
-                        this.token = obj.data.token.access_token;
+                        // this.token = obj.data.token.access_token;
                         this.isLoggedIn = true;
                         return true;
                     },

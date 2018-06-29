@@ -19,6 +19,7 @@ import { AuthModule } from './common/auth/auth.module';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { CookieModule } from 'ngx-cookie';
 registerLocaleData(zh);
 
 @NgModule({
@@ -35,7 +36,8 @@ registerLocaleData(zh);
     CommonModule,
     ComponentsModule,
     AppRoutingModule,
-    ServiceModule
+    ServiceModule,
+    CookieModule
   ],
   bootstrap: [AppComponent],
   /** 配置 ng-zorro-antd 国际化 **/

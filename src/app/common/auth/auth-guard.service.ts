@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 // 导入路由守卫
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+// import { DOCUMENT } from "@angular/common";
 // 引入登陆服务
 import { AuthService } from './auto.service';
 @Injectable()
 export class AuthGuardService implements CanActivate {
+    // document: any;
     constructor(private router: Router, private auth: AuthService) {
 
     }

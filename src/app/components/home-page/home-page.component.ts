@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../common/auth/auto.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'uxsino-home-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.getUseList().subscribe(obj => {
+      console.log(obj);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

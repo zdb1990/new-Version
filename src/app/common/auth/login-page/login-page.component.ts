@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../auto.service';
-
+import { CookieService } from 'ngx-cookie';
 @Component({
   selector: 'uxsino-login-page',
   templateUrl: './login-page.component.html',
@@ -9,7 +9,7 @@ import { AuthService } from './../auto.service';
 })
 export class LoginPageComponent implements OnInit {
   seachObj: any;
-  constructor(private authservice: AuthService, private route: Router) { }
+  constructor(private authservice: AuthService, private route: Router, private cookieservice: CookieService) { }
 
   ngOnInit() {
     this.seachObj = {
@@ -23,6 +23,7 @@ export class LoginPageComponent implements OnInit {
     this.authservice.Login(this.seachObj).subscribe((obj) => {
       console.log(obj);
       console.log(obj.success);
+      this.cookieservice.put('usercookie', obj.data.token.access_token || '');
 
     }, error => {
       console.log(error);

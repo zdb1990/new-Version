@@ -6,8 +6,8 @@ import { OverviewPageComponent } from './components/overview-page/overview-page.
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ChartPageComponent } from './components/chart-page/chart-page.component';
 const routes: Routes = [
-    { path: '', redirectTo: '/login-page', pathMatch: 'full' },
-    { path: 'home-page', component: HomePageComponent },
+    { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+    { path: 'home-page', canActivate: [AuthGuardService], component: HomePageComponent },
     { path: 'login-page', component: LoginPageComponent },
     { path: 'overview-page', canActivate: [AuthGuardService], component: OverviewPageComponent },
     { path: 'chart-page', component: ChartPageComponent }
@@ -15,7 +15,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, { useHash: false })],
-    exports: [RouterModule],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
