@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './common/auth/login-page/login-page.component';
 import { AuthGuardService } from './common/auth/auth-guard.service';
-import { OverviewPageComponent } from './components/overview-page/overview-page.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { ChartPageComponent } from './components/chart-page/chart-page.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/home-page', pathMatch: 'full' },
     {

@@ -9,7 +9,8 @@ import { FooterComponent } from './home-page/footer/footer.component';
 import { ChartPageComponent } from './chart-page/chart-page.component';
 
 const routes: Routes = [
-    { path: '', component: HomePageComponent },
+    { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+    { path: 'home-page', component: HomePageComponent },
     { path: 'overview-page', component: OverviewPageComponent },
     { path: 'chart-page', component: ChartPageComponent },
 ];
