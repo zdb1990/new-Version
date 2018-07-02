@@ -21,16 +21,12 @@ export class LoginPageComponent implements OnInit {
   // 用户登录
   login() {
     this.authservice.Login(this.seachObj).subscribe((obj) => {
-      console.log(obj);
-      console.log(obj.success);
-
       if (obj.success) {
         this.cookieservice.set('usercookie', obj.data.token.access_token);
-        this.route.navigateByUrl('home-page');
+        this.route.navigateByUrl('/home-page');
       }
     }, error => {
       console.log(error);
-      this.route.navigateByUrl('/home-page');
     });
   }
 

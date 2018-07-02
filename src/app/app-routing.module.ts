@@ -7,10 +7,14 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ChartPageComponent } from './components/chart-page/chart-page.component';
 const routes: Routes = [
     { path: '', redirectTo: '/home-page', pathMatch: 'full' },
-    { path: 'home-page', canActivate: [AuthGuardService], component: HomePageComponent },
+    {
+        path: 'home-page', canActivate: [AuthGuardService],
+        children: [
+            { path: 'home-page', loadChildren: './components/components.module#ComponentsModule' }
+        ]
+    },
     { path: 'login-page', component: LoginPageComponent },
-    { path: 'overview-page', canActivate: [AuthGuardService], component: OverviewPageComponent },
-    { path: 'chart-page', component: ChartPageComponent }
+
 ];
 
 @NgModule({

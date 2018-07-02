@@ -11,6 +11,7 @@ export class InterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // console.log(this.cookie.get('usercookie'));
         const token = this.cookie.get('usercookie');
+        console.log(token);
         const Baseurl = 'http://10.1.104.63:4005';
         const authReq = req.clone({
             url: (Baseurl + req.url),
@@ -23,13 +24,13 @@ export class InterceptorService implements HttpInterceptor {
 
         return next.handle(authReq).pipe(
             tap(
-                (event: any) => {
+                event => {
                     if (event instanceof HttpResponse) {
                         if (event.status === 401) {
                             console.log('请求失败');
-                            this.router.navigateByUrl('/login-page');
+                            this.cookie.delete('usercookie');
                             this.auth.isLoggedIn = false;
-                            this.auth.token = '';
+                            this.router.navigateByUrl('/login-page');
                         }
                     }
                     return event;
@@ -37,9 +38,10 @@ export class InterceptorService implements HttpInterceptor {
                 err => {
                     if (err.status === 401) {
                         console.log('重新登陆');
-                        this.router.navigateByUrl('/login-page');
+                        this.cookie.delete('usercookie');
                         this.auth.isLoggedIn = false;
-                        this.auth.token = '';
+                        this.router.navigateByUrl('/login-page');
+                        return err;
                     }
                 }
             )

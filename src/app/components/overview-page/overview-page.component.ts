@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../common/auth/auto.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'uxsino-overview-page',
   templateUrl: './overview-page.component.html',
@@ -9,20 +9,18 @@ import { AuthService } from '../../common/auth/auto.service';
 })
 export class OverviewPageComponent implements OnInit {
   tokenOut: any;
-  constructor(private authservice: AuthService, private route: Router) { }
+  constructor(private authservice: AuthService, private route: Router, private cookie: CookieService) { }
 
   ngOnInit() {
-    this.tokenOut = {
-      token: ''
-    };
+
   }
   // 退出登录
   loginout() {
-    console.log(this.authservice);
-    this.tokenOut.token = this.authservice.token;
-    this.authservice.Loginout(this.tokenOut).subscribe((obj) => {
+
+    this.authservice.Loginout().subscribe((obj) => {
       console.log(obj);
       if (obj.success) {
+        this.cookie.delete('usercookie');
         this.route.navigateByUrl('/login-page');
         this.authservice.isLoggedIn = false;
       }

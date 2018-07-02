@@ -7,8 +7,11 @@ import { ContentComponent } from './home-page/content/content.component';
 import { SiderComponent } from './home-page/sider/sider.component';
 import { FooterComponent } from './home-page/footer/footer.component';
 import { ChartPageComponent } from './chart-page/chart-page.component';
-const routes: Routes = [
 
+const routes: Routes = [
+    { path: '', component: HomePageComponent },
+    { path: 'overview-page', component: OverviewPageComponent },
+    { path: 'chart-page', component: ChartPageComponent },
 ];
 
 @NgModule({
