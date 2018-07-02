@@ -24,6 +24,7 @@
         "d3": "^5.5.0",
         "ng-zorro-antd": "^1.0.0",
         "ngx-cookie": "^4.0.2",
+        "ngx-cookie-service": "^1.0.10",
         "rxjs": "^6.2.1",
         "zone.js": "^0.8.26"
     },

@@ -8,6 +8,8 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 // 配置表单和动态表单
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// 配置cookie;
+import { CookieModule } from 'ngx-cookie';
 // 配置路由
 import { RouterModule } from '@angular/router';
 import zh from '@angular/common/locales/zh';
@@ -21,7 +23,8 @@ registerLocaleData(zh);
         /**导入基本指令像模块NgIf，NgForOf... **/
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CookieModule,
     ],
     exports: [
         BrowserAnimationsModule,
@@ -29,7 +32,8 @@ registerLocaleData(zh);
         NgZorroAntdModule,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CookieModule
     ],
     declarations: [],
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],

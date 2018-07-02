@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 // import { DOCUMENT } from "@angular/common";
 // 引入登陆服务
 import { AuthService } from './auto.service';
+
 @Injectable()
 export class AuthGuardService implements CanActivate {
     // document: any;
-    constructor(private router: Router, private auth: AuthService) {
+    constructor(private router: Router, private auth: AuthService, private route: Router) {
 
     }
     /*ActivatedRouteSnapshot也可以用来遍历路由器状态树。 RouterStateSnapshot 代表路由器在某个时刻的状态。*/
@@ -16,6 +17,7 @@ export class AuthGuardService implements CanActivate {
         if (this.auth.isLoggedIn) {
             return true;
         } else {
+            this.route.navigateByUrl('/login-page');
             return false;
         }
     }

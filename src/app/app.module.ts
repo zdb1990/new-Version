@@ -19,7 +19,7 @@ import { AuthModule } from './common/auth/auth.module';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { CookieModule } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie-service';
 registerLocaleData(zh);
 
 @NgModule({
@@ -37,13 +37,14 @@ registerLocaleData(zh);
     ComponentsModule,
     AppRoutingModule,
     ServiceModule,
-    CookieModule
   ],
   bootstrap: [AppComponent],
   /** 配置 ng-zorro-antd 国际化 **/
   providers: [
+    CookieService,
     { provide: NZ_I18N, useValue: zh_CN },
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }]
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  ]
 })
 export class AppModule { }
 

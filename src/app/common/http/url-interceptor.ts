@@ -4,11 +4,13 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auto.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-    constructor(private auth: AuthService, private router: Router) { }
+    constructor(private auth: AuthService, private router: Router, private cookie: CookieService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = this.auth.token;
+        // console.log(this.cookie.get('usercookie'));
+        const token = this.cookie.get('usercookie');
         const Baseurl = 'http://10.1.104.63:4005';
         const authReq = req.clone({
             url: (Baseurl + req.url),
@@ -28,7 +30,6 @@ export class InterceptorService implements HttpInterceptor {
                             this.router.navigateByUrl('/login-page');
                             this.auth.isLoggedIn = false;
                             this.auth.token = '';
-                            console.log(this.auth);
                         }
                     }
                     return event;
@@ -39,7 +40,6 @@ export class InterceptorService implements HttpInterceptor {
                         this.router.navigateByUrl('/login-page');
                         this.auth.isLoggedIn = false;
                         this.auth.token = '';
-                        console.log(this.auth);
                     }
                 }
             )

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../common/auth/auto.service';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'uxsino-home-page',
@@ -9,13 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private route: Router) { }
 
   ngOnInit() {
     this.auth.getUseList().subscribe(obj => {
       console.log(obj);
+
     }, error => {
       console.log(error);
+      this.route.navigateByUrl('/login-page');
     });
   }
 
