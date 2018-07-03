@@ -178,7 +178,7 @@ export class ChartPageComponent implements OnInit, AfterViewInit {
       // console.log(1)
       // tslint:disable-next-line:forin
       for (let i in radarChartOptions) {
-        console.log(i);
+        // console.log(i);
         if ('undefined' !== typeof radarChartOptions[i]) {
           // 把radarChartOptions赋值给cfg[i]
           cfg[i] = radarChartOptions[i];
@@ -201,11 +201,11 @@ export class ChartPageComponent implements OnInit, AfterViewInit {
     let total = allAxis.length;
     //算出圆角度数
     let radius = Math.min(cfg.w / 2, cfg.h / 2);
+    console.log(radius)
     let Format = d3.format('%');
     // 圆周率*2/数据长度
     let angleSlice = Math.PI * 2 / total;
-    console.log(Math.PI);
-    console.log(radius);
+    console.log(radius + 'R' + H);
     // 定义比例0-圆角
     let rScale = d3.scaleLinear().range([0, radius]).domain([0, maxValue]);
     d3.select('.chart-page-body').select('svg').remove();
@@ -252,7 +252,7 @@ export class ChartPageComponent implements OnInit, AfterViewInit {
       .text((d, i) => {
         return Format(maxValue * d / cfg.levels);
       });
-
+    // 添加雷达图的白线
     let axis = axisGrid.selectAll('.axis')
       .data(allAxis)
       .enter()
@@ -269,9 +269,90 @@ export class ChartPageComponent implements OnInit, AfterViewInit {
         return rScale(maxValue * 1.1) * Math.sin(angleSlice * i - Math.PI / 2);
       }).attr('class', 'line')
       .style('stroke', 'white')
-      .style('stroke-width', '2px')
-    // console.log(rScale(1.3))
+      .style('stroke-width', '2px');
+    // 添加
+    axis.append('text').attr('class', 'legend')
+      .attr('font-size', '11px')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '0.35rem')
+      .attr('x', (d, i) => {
+        return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice * i - Math.PI / 2);
+      })
+      .attr('y', (d, i) => {
+        return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice * i - Math.PI / 2);
+      })
+      .text((d) => {
+        return d;
+      })
+    //.call(function (text, width) {
+    //       // text.each(function () {
+    //       //   let text = d3.select(this);
+    //       //   let words = text.text().split(/\s+/).reverse();
+    //       //   let line = [];
+    //       //   let lineNumber = 0;
+    //       //   let lineHeight = 1.4;
+    //       //   let y = text.attr('x');
+    //       //   let x = text.attr('y');
+    //       //   let dy = parseFloat(text.attr('dy'));
+    //       //   let tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+    //       // let word = words.pop();
+    //       // while (word) {
+    //       //   line.push(word);
+    //       //   tspan.text(line.join(' '));
+    //       //   if (tspan.node().getComputedTextLength() > width) {
+    //       //     line.pop();
+    //       //     tspan.text(line.join(' '));
+    //       //     line = [word];
+    //       //     tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
+    //       //   }
+    //       // }
+    //     });
+    // }, cfg.wrapWidth);
+    let blobCircleWrapper = gDom.selectAll('.radarCircleWrapper')
+      .data(this.randardata)
+      .enter().append('g')
+      .attr('class', 'radarCircleWrapper');
+
+    let tooltip = gDom.append('text').attr('class', 'tooltip').style('opacity', 0);
+    // 画出每一个坐标点
+    blobCircleWrapper.selectAll('.radarInvisibleCircle')
+      .data((d, i) => {
+        return d;
+      })
+      .enter().append('circle')
+      .attr('class', 'radarInvisibleCircle')
+      .attr('r', cfg.dotRadius * 1.5)
+      .attr('cx', (d, i) => {
+        return rScale(d.value) * Math.cos(angleSlice * i - Math.PI / 2);
+      })
+      .attr('cy', (d, i) => {
+        return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2);
+      })
+      .style('fill', 'none')
+      // pointer-events CSS 属性指定在什么情况下 (如果有) 某个特定的图形元素可以成为鼠标事件的 target。
+      .style('pointer-events', 'all');
+
+    let radarInvisibleCircle = d3.selectAll('.radarInvisibleCircle');
+    // console.log(radarInvisibleCircle)
+
+    radarInvisibleCircle.on('mouseover', function (d) {
+      console.log(d);
+      // console.log(this);
+      let newX = parseFloat(d3.select(this).attr('cx')) - 10;
+      let newY = parseFloat(d3.select(this).attr('cy')) - 10;
+      tooltip.attr('x', newX)
+        .attr('y', newY)
+        .text(Format(d.value))
+        .transition().duration(200)
+        .style('opacity', 1);
+    });
+    radarInvisibleCircle.on('mouseout', function () {
+      tooltip.transition().duration(200).style('opacity', 0);
+    })
+
+
   }
+
 
 
 
