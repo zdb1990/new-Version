@@ -1,3 +1,23 @@
 <div class="content-body">
     <button [routerLink]="['/overview-page']">跳转总览</button>
+    <button (click)="dbclick()">点击发送消息</button>
+    <div style="line-height:40px">
+        <div>
+            <nz-form-label [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]='2' [nzXl]="2" [nzXXl]="2">组织名称</nz-form-label>
+            <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]='4' [nzXl]="4" [nzXXl]="4">
+                <input nz-input placeholder="请输入名称">
+            </nz-form-control>
+        </div>
+        <div>
+            <nz-form-label [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]='2' [nzXl]="2" [nzXXl]="2">组织名称</nz-form-label>
+            <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]='4' [nzXl]="4" [nzXXl]="4">
+                <nz-tree-select style="width:233px" [nzDefaultExpandedKeys]="expandKeys" [nzDropdownMatchSelectWidth]="true" [nzNodes]="nodes" nzPlaceHolder="请选择部门" [(ngModel)]="value" (ngModelChange)="onChange($event)">
+                </nz-tree-select>
+            </nz-form-control>
+
+        </div>
+        <div>
+            <button nz-button nzType="primary" style="margin-left: 20px">添加</button>
+        </div>
+    </div>
 </div>

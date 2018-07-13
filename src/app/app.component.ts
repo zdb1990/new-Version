@@ -1,3 +1,4 @@
+import { AuthService } from './common/auth/auto.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,4 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: []
 })
 export class AppComponent {
+  constructor(private authService: AuthService) {
+
+  }
+  OnInit() {
+    console.log(this.authService);
+
+  }
 }

@@ -7,7 +7,8 @@ import { ContentComponent } from './home-page/content/content.component';
 import { SiderComponent } from './home-page/sider/sider.component';
 import { FooterComponent } from './home-page/footer/footer.component';
 import { ChartPageComponent } from './chart-page/chart-page.component';
-
+import { WrapperComponent } from './wrapper/wrapper.component';
+import { CounterComponent } from './counter/counter.component';
 const routes: Routes = [
     { path: '', redirectTo: '/home-page', pathMatch: 'full' },
     { path: 'home-page', component: HomePageComponent },
@@ -28,5 +29,7 @@ export const routedComponents = [
     ContentComponent,
     SiderComponent,
     FooterComponent,
-    ChartPageComponent
+    ChartPageComponent,
+    WrapperComponent,
+    CounterComponent
 ];

@@ -20,6 +20,8 @@ import { AuthModule } from './common/auth/auth.module';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { CookieService } from 'ngx-cookie-service';
+import { WebSocketService } from './service/webScoket.service';
+
 registerLocaleData(zh);
 
 @NgModule({
@@ -42,6 +44,7 @@ registerLocaleData(zh);
   /** 配置 ng-zorro-antd 国际化 **/
   providers: [
     CookieService,
+    WebSocketService,
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ]
