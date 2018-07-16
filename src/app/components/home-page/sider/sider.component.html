@@ -1,1 +1,70 @@
-<div class="slider">Sider</div>
+<div class="slider">
+    <!-- <ul nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="true">
+        <li nz-menu-item class="mene-item">
+            <span title class="tplink">
+        <i class="anticon anticon-mail"></i>
+      </span>
+            <div class="title">
+                <span class="triangle"></span>主页
+            </div>
+        </li>
+        <li nz-menu-item class="mene-item">
+            <span title class="tplink">
+        <i class="anticon anticon-appstore"></i>
+      </span>
+            <div class="title">
+                <span class="triangle"></span>磁盘</div>
+
+        </li>
+        <li nz-menu-item class="mene-item">
+            <span title class="tplink">
+        <i class="anticon anticon-setting"></i>
+      </span>
+            <div class="title">
+                <span class="triangle"></span>权限</div>
+
+        </li>
+    </ul> -->
+
+    <!-- <ul class="item">
+        <li class="mene-item mene-active">
+            <span>
+        <i class="anticon anticon-mail"></i>
+      </span>
+            <div class="title line-active">
+                <span class="triangle"></span>主页
+            </div>
+            <div class="line"></div>
+        </li>
+        <li class="mene-item">
+            <span>
+        <i class="anticon anticon-appstore"></i>
+      </span>
+            <div class="title">
+                <span class="triangle"></span>磁盘
+            </div>
+            <div class="line"></div>
+        </li>
+        <li class="mene-item">
+            <span>
+        <i class="anticon anticon-setting"></i>
+      </span>
+            <div class="title">
+                <span class="triangle"></span>权限
+            </div>
+            <div class="line"></div>
+        </li>
+    </ul> -->
+    <ul class="item">
+        <li class="mene-item" *ngFor="let item of menuList;let i=index" [ngClass]="{'active':activenum==i}" (click)="Onclick(i)">
+            <span>
+        <i class="anticon {{item.icon}}"></i>
+
+      </span>
+            <div class="title">
+                <span class="triangle"></span>{{item.title}}
+            </div>
+            <div class="line" [ngClass]="{'line-active':activenum==i}"></div>
+        </li>
+    </ul>
+</div>

@@ -31,7 +31,8 @@
                             "./node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
                         ],
                         "scripts": [
-                            "./node_modules/d3/dist/d3.js"
+                            "./node_modules/d3/dist/d3.js",
+                            "./node_modules/jquery/dist/jquery.js"
                         ]
                     },
                     "configurations": {
@@ -83,7 +84,8 @@
                             "./node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
                         ],
                         "scripts": [
-                            "./node_modules/d3/dist/d3.js"
+                            "./node_modules/d3/dist/d3.js",
+                            "./node_modules/jquery/dist/jquery.js"
                         ],
                         "assets": [
                             "src/favicon.ico",
