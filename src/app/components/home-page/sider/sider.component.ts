@@ -23,23 +23,4 @@ export class SiderComponent implements OnInit {
     console.log(index);
     this.activenum = index;
   }
-  // titleCss() {
-  //   $('.mene-item').hover(function () {
-  //     for (let i = 0; i < $('.mene-item').length; i++) {
-  //       $('.mene-item').css({ 'backgroundColor': '#04092d' });
-  //       $('.mene-item').children('.line').css('display', 'none');
-  //       $('.mene-item').children('.title').css('display', 'none');
-  //     }
-  //     $(this).children('.title').css('display', 'block');
-  //     $(this).children('.line').css('display', 'block');
-  //     $(this).css({ 'backgroundColor': '#162d59' });
-  //   });
-  //   $('.mene-item').click(function (e) {
-  //     $(this).children('.title').css('display', 'block');
-  //     $(this).children('.line').css('display', 'block');
-  //     $(this).css({ 'backgroundColor': '#1890ff' });
-  //   });
-
-
-  // }
 }

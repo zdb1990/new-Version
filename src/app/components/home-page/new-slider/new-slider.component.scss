@@ -1,5 +1,5 @@
 :host::ng-deep {
-    .slider {
+    .new-slider {
         height: 100%;
         background-color: #04092d;
     }
@@ -22,9 +22,10 @@
             display: none;
         }
         &:hover {
-            background-color: #162d59; // .line {
-            //     display: block;
-            // }
+            background-color: #162d59;
+            .line {
+                display: block;
+            }
             .title {
                 display: block;
             }
@@ -41,7 +42,7 @@
         border-radius: 5px;
         display: none;
         font-size: 14px;
-        .triangle {
+        .tooger {
             width: 0px;
             height: 0px;
             border-top: 8px solid transparent;
