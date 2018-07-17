@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 // 引入HTTP请求
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 // 引入公用组件module
@@ -16,6 +17,7 @@ import { ServiceModule } from './service/service.module';
 // 引入拦截器服务并使用
 import { InterceptorService } from './common/http/url-interceptor';
 import { AuthModule } from './common/auth/auth.module';
+import { GridsterModule } from 'angular-gridster2';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
@@ -39,6 +41,8 @@ registerLocaleData(zh);
     ComponentsModule,
     AppRoutingModule,
     ServiceModule,
+    NgxEchartsModule,
+    GridsterModule
   ],
   bootstrap: [AppComponent],
   /** 配置 ng-zorro-antd 国际化 **/

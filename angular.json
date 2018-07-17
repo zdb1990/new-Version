@@ -32,6 +32,7 @@
                         ],
                         "scripts": [
                             "./node_modules/d3/dist/d3.js",
+                            "./node_modules/echarts/dist/echarts.min.js",
                             "./node_modules/jquery/dist/jquery.js"
                         ]
                     },
@@ -85,6 +86,7 @@
                         ],
                         "scripts": [
                             "./node_modules/d3/dist/d3.js",
+                            "./node_modules/echarts/dist/echarts.min.js",
                             "./node_modules/jquery/dist/jquery.js"
                         ],
                         "assets": [

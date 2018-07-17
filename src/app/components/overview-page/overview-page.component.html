@@ -1,6 +1,16 @@
-<p>
-    <button nz-button nzType="primary" (click)="loginout()">退出登录</button>
-    <button (click)="getUserList()">用户</button>
-    <button [routerLink]="['/chart-page']">跳到图表</button>
-</p>
-<uxsino-wrapper></uxsino-wrapper>
+<gridster [options]="options">
+    <gridster-item [item]="item" *ngFor="let item of dashboard;let i = index;">
+        <div [ngSwitch]="i">
+            <div *ngSwitchCase="'0'">
+                <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,i)" id="demo1"></div>
+            </div>
+            <div *ngSwitchCase="'1'">
+                <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,i)" id="demo2"></div>
+            </div>
+        </div>
+    </gridster-item>
+    <!-- <gridster-item [item]="item" *ngFor="let item of dashboard">
+        <div echarts [options]="barOption" class="demo-chart"></div>
+        <div echarts [options]="lineOption" class="demo-chart"></div>
+    </gridster-item> -->
+</gridster>

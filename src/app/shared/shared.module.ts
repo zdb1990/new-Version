@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // 引入ngfor ngif指令所需的module;
 import { CommonModule } from '@angular/common';
+import { NgxEchartsModule } from 'ngx-echarts';
 // 引入路由
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 配置 angular i18n **/
@@ -10,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // 配置cookie;
 import { CookieModule } from 'ngx-cookie';
+import { GridsterModule } from 'angular-gridster2';
 // 配置路由
 import { RouterModule } from '@angular/router';
 import zh from '@angular/common/locales/zh';
@@ -25,6 +27,8 @@ registerLocaleData(zh);
         FormsModule,
         ReactiveFormsModule,
         CookieModule,
+        GridsterModule,
+        NgxEchartsModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -33,7 +37,9 @@ registerLocaleData(zh);
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        CookieModule
+        CookieModule,
+        GridsterModule,
+        NgxEchartsModule
     ],
     declarations: [],
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],
