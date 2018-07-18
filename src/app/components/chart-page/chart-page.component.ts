@@ -52,32 +52,36 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       },
       swap: true,
       pushItems: true,
-      displayGrid: 'none'
+      displayGrid: 'always'
     };
     this.dashboard = [
-      { cols: 2, rows: 2, y: 0, x: 0, id: 'demo1' },
-      { cols: 2, rows: 2, y: 0, x: 2, id: 'demo2' }
+      { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1' },
+      { cols: 2, rows: 1, y: 0, x: 2, id: 'demo2' }
     ];
   }
   ngAfterContentInit() {
     this.echartsone = {
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: '55%',
-          data: [
-            { value: 235, name: '视频广告' },
-            { value: 274, name: '联盟广告' },
-            { value: 310, name: '邮件营销' },
-            { value: 335, name: '直接访问' },
-            { value: 400, name: '搜索引擎' }
-          ]
-        }
-      ]
+      title: {
+        id: 1,
+        text: 'center1数据中心'
+        link: 'http://localhost:5200/home-page/overview-page',
+        target: 'self',
+        textStyle: {
+          color: '#333',
+          // fontSize: 30,
+          align: 'right',
+          width: '100%'
+        },
+        subtext: '统计',
+        padding: 20,
+        left: 'center'
+      },
+      legend: {
+        type: 'scroll'
+      }
     };
     this.echartstwo = {
-    }
+    };
   }
   onChartInit(e: any, i: number) {
     if (i === 0) {
