@@ -8,20 +8,13 @@ import { GridsterConfig, GridsterItem } from 'angular-gridster2';
   templateUrl: './overview-page.component.html',
   styleUrls: ['./overview-page.component.scss']
 })
-export class OverviewPageComponent implements OnInit, AfterViewInit {
+export class OverviewPageComponent implements OnInit, AfterContentInit {
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
   public echartsInstance1: any;
   public echartsInstance2: any;
   echartsOption1: any;
   echartsOption2: any;
-  static itemChange(item, itemComponent) {
-    console.log('itemChanged', item, itemComponent);
-  }
-
-  static itemResize(item, itemComponent) {
-    console.log('itemResized', item, itemComponent);
-  }
   constructor() { }
 
   ngOnInit() {
@@ -29,31 +22,28 @@ export class OverviewPageComponent implements OnInit, AfterViewInit {
     this.options = {
       gridType: 'fit',
       compactType: 'none',
-      // 当元素改变时
+      // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {
           echarts.style.width = itemComponent.width + 'px';
           echarts.style.height = itemComponent.height - 30 + 'px';
-          console.log(echarts)
           let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
-          // dom[item.id].resize();
+          dom[item.id].resize();
         }
       },
       itemResizeCallback: function (item, itemComponent) {
-        console.log(item, itemComponent)
-        // let echarts = document.getElementById(`${item.id}`);
+        let echarts = document.getElementById(`${item.id}`);
 
-        // if (echarts) {
-        //   echarts.style.width = itemComponent.width + 'px';
-        //   echarts.style.height = itemComponent.height - 30 + 'px';
-        //   let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
-        //   // dom[item.id].resize();
-        // }
+        if (echarts) {
+          echarts.style.width = itemComponent.width + 'px';
+          echarts.style.height = itemComponent.height - 30 + 'px';
+          let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
+          dom[item.id].resize();
+        }
       },
       margin: 10,
-      outerMargin: true,
       draggable: { /*是否可拖拽*/
         enabled: true
       },
@@ -71,7 +61,7 @@ export class OverviewPageComponent implements OnInit, AfterViewInit {
     ];
 
   }
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.echartsOption1 = {
       title: {
         text: '折线图堆叠'
@@ -172,10 +162,9 @@ export class OverviewPageComponent implements OnInit, AfterViewInit {
     };
   }
   onChartInit(e: any, i: number) {
-    console.log(e, i);
-    if (i === 1) {
+    if (i === 0) {
       this.echartsInstance1 = e;
-    } else if (i === 2) {
+    } else if (i === 1) {
       this.echartsInstance2 = e;
     }
   }

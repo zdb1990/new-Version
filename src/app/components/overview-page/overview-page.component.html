@@ -2,10 +2,10 @@
     <gridster-item [item]="item" *ngFor="let item of dashboard;let i = index;">
         <div [ngSwitch]="i">
             <div *ngSwitchCase="'0'">
-                <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,i)" id="demo1"></div>
+                <div echarts [options]="echartsOption1" (chartInit)="onChartInit($event,i)" id="demo1"></div>
             </div>
             <div *ngSwitchCase="'1'">
-                <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,i)" id="demo2"></div>
+                <div echarts [options]="echartsOption2" (chartInit)="onChartInit($event,i)" id="demo2"></div>
             </div>
         </div>
     </gridster-item>
