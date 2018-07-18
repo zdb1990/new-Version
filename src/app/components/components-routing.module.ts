@@ -11,10 +11,14 @@ import { WrapperComponent } from './wrapper/wrapper.component';
 import { CounterComponent } from './counter/counter.component';
 import { NewSliderComponent } from './home-page/new-slider/new-slider.component';
 const routes: Routes = [
-    { path: '', redirectTo: '/home-page', pathMatch: 'full' },
-    { path: 'home-page', component: HomePageComponent },
-    { path: 'overview-page', component: OverviewPageComponent },
-    { path: 'chart-page', component: ChartPageComponent },
+    {
+        path: 'home-page', component: HomePageComponent, children: [
+            { path: '', redirectTo: '/overview-page', pathMatch: 'full' },
+            { path: 'overview-page', component: OverviewPageComponent },
+            { path: 'chart-page', component: ChartPageComponent }
+        ]
+    },
+
 ];
 
 @NgModule({
