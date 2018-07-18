@@ -20,14 +20,14 @@ export class OverviewPageComponent implements OnInit, AfterContentInit {
   ngOnInit() {
     let self = this;
     this.options = {
-      gridType: 'fit',
+      gridType: 'fixed',
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {
-          echarts.style.width = itemComponent.width + 'px';
+          echarts.style.width = itemComponent.width - 30 + 'px';
           echarts.style.height = itemComponent.height - 30 + 'px';
           let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
           dom[item.id].resize();
@@ -37,7 +37,7 @@ export class OverviewPageComponent implements OnInit, AfterContentInit {
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {
-          echarts.style.width = itemComponent.width + 'px';
+          echarts.style.width = itemComponent.width - 30 + 'px';
           echarts.style.height = itemComponent.height - 30 + 'px';
           let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
           dom[item.id].resize();
@@ -56,8 +56,8 @@ export class OverviewPageComponent implements OnInit, AfterContentInit {
       displayGrid: 'none'
     };
     this.dashboard = [
-      { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1' },
-      { cols: 2, rows: 4, y: 0, x: 2, id: 'demo2' }
+      { cols: 2, rows: 2, y: 0, x: 0, id: 'demo1' },
+      { cols: 2, rows: 2, y: 0, x: 2, id: 'demo2' }
     ];
 
   }
