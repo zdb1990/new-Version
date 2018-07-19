@@ -1,7 +1,8 @@
+import { GetEchartsService } from './getEcharts.service';
 import { NgModule } from '@angular/core';
 // 引入登陆的请求服务
-import { AuthService } from './../common/auth/auto.service';
-import { AuthModule } from './../common/auth/auth.module';
+import { AuthService } from '../common/auth/auto.service';
+import { AuthModule } from '../common/auth/auth.module';
 import { WebSocketService } from './webScoket.service';
 
 @NgModule({
@@ -10,6 +11,6 @@ import { WebSocketService } from './webScoket.service';
     ],
     exports: [],
     declarations: [],
-    providers: [AuthService, WebSocketService],
+    providers: [AuthService, WebSocketService, GetEchartsService],
 })
 export class ServiceModule { }

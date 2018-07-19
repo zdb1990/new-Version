@@ -23,7 +23,7 @@
         "angular-gridster2": "^6.0.5",
         "core-js": "^2.5.4",
         "d3": "^5.5.0",
-        "echarts": "^4.1.0",
+        "echarts": "^3.8.5",
         "jquery": "^3.3.1",
         "ng-zorro-antd": "^1.0.0",
         "ngx-cookie": "^4.0.2",

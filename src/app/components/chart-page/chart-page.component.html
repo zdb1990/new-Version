@@ -9,6 +9,9 @@
                 <div *ngSwitchCase="'1'">
                     <div echarts [options]="echartstwo" (chartInit)="onChartInit($event,i)" id="demo2"></div>
                 </div>
+                <div *ngSwitchCase="'2'">
+                    <div echarts [options]="echartsthree" (chartInit)="onChartInit($event,i)" id="demo3"></div>
+                </div>
             </div>
         </gridster-item>
     </gridster>

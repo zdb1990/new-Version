@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../auto.service';
+import { AuthService } from '../auto.service';
 import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'uxsino-login-page',

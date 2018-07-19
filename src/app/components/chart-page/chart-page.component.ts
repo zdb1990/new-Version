@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { GetEchartsService } from '../../service/getEcharts.service';
+
 @Component({
   selector: 'uxsino-chart-page',
   templateUrl: './chart-page.component.html',
@@ -11,10 +13,41 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
   dashboard: Array<GridsterItem>;
   public echartsInstance1: any;
   public echartsInstance2: any;
+  public echartsInstance3: any;
   echartsone: any;
   echartstwo: any;
-
-  constructor() { }
+  echartsthree: any;
+  dataBJ: any = [
+    [55, 9, 56, 0.46, 18, 6, 1],
+    [25, 11, 21, 0.65, 34, 9, 2],
+    [56, 7, 63, 0.3, 14, 5, 3],
+    [33, 7, 29, 0.33, 16, 6, 4],
+    [42, 24, 44, 0.76, 40, 16, 5]
+  ];
+  dataGz: any = [
+    [26, 37, 27, 1.163, 27, 13, 1],
+    [85, 62, 71, 1.195, 60, 8, 2],
+    [78, 38, 74, 1.363, 37, 7, 3],
+    [21, 21, 36, 0.634, 40, 9, 4],
+    [41, 42, 46, 0.915, 81, 13, 5]
+  ];
+  dataSH: any = [
+    [91, 45, 125, 0.82, 34, 23, 1],
+    [65, 27, 78, 0.86, 45, 29, 2],
+    [83, 60, 84, 1.09, 73, 27, 3],
+    [109, 81, 121, 1.28, 68, 51, 4],
+    [106, 77, 114, 1.07, 55, 51, 5],
+    [109, 81, 121, 1.28, 68, 51, 6]
+  ];
+  barData: any = [
+    { 'name': 'center1', 'value': 50 },
+    { 'name': 'center2', 'value': 150 },
+    { 'name': 'center3', 'value': 5 },
+    { 'name': 'center4', 'value': 250 },
+    { 'name': 'center5', 'value': 53 },
+    { 'name': 'center6', 'value': 15 },
+  ];
+  constructor(private getechartsservice: GetEchartsService) { }
 
   ngOnInit() {
     let self = this;
@@ -27,7 +60,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
 
         if (echarts) {
           echarts.style.width = itemComponent.width + 'px';
-          echarts.style.height = itemComponent.height - 30 + 'px';
+          echarts.style.height = itemComponent.height + 'px';
           let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
           dom[item.id].resize();
         }
@@ -37,7 +70,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
 
         if (echarts) {
           echarts.style.width = itemComponent.width + 'px';
-          echarts.style.height = itemComponent.height - 30 + 'px';
+          echarts.style.height = itemComponent.height + 'px';
           let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
           dom[item.id].resize();
         }
@@ -55,39 +88,240 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       displayGrid: 'always'
     };
     this.dashboard = [
-      { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1' },
-      { cols: 2, rows: 1, y: 0, x: 2, id: 'demo2' }
+      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1' },
+      { cols: 2, rows: 1, y: 0, x: 3, id: 'demo2' },
+      { cols: 2, rows: 1, y: 1, x: 3, id: 'demo3' }
     ];
   }
   ngAfterContentInit() {
     this.echartsone = {
+      backgroundColor: '#161627',
       title: {
-        id: 1,
-        text: 'center1数据中心'
-        link: 'http://localhost:5200/home-page/overview-page',
-        target: 'self',
+        text: '雷达图',
+        left: 'center',
         textStyle: {
-          color: '#333',
-          // fontSize: 30,
-          align: 'right',
-          width: '100%'
-        },
-        subtext: '统计',
-        padding: 20,
-        left: 'center'
+          color: '#eee'
+        }
       },
+      // 提示区域的属性
       legend: {
-        type: 'scroll'
-      }
+        bottom: 5,
+        data: ['center', 'server', 'pool'],
+        itemGap: 20,
+        textStyle: {
+          color: '#fff',
+          fontSize: 14
+        },
+        selecteMode: 'single'
+      },
+      tooltip: {
+        trigger: 'item',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      // 工具栏
+      toolbox: {
+        show: true,
+        feature: {
+          mark: { show: true },
+          dataView: { show: true, readOnly: false },
+          restore: { show: true },
+          saveAsImage: { show: true }
+        }
+      },
+      radar: {
+        // 定义雷达图的维度
+        indicator: [
+          { name: 'center1', max: 300 },
+          { name: 'center2', max: 250 },
+          { name: 'center3', max: 200 },
+          { name: 'center4', max: 150 },
+          { name: 'center5', max: 400 }, // max指示器的最大值
+          { name: 'center6', max: 350 },
+        ],
+        shape: 'circle', // 设定形状
+        splitNumber: 5,
+        name: {
+          texrStyle: {
+            color: 'rgb(238, 197, 102)'
+          }
+        },
+        // 雷达中心线的颜色
+        splitLine: {
+          lineStyle: {
+            color: [
+              'rgba(238,197,102,0.1)',
+              'rgba(238,197,102,0.2)',
+              'rgba(238,197,102,0.4)',
+              'rgba(238,197,102,0.6)',
+              'rgba(238,197,102,0.8)',
+              'rgba(238,197,102,1)'
+            ].reverse()
+          }
+        },
+        splitArea: {
+          // 阴影部分是否显示
+          show: false
+        },
+        // 每条轴的颜色
+        axisLine: {
+          lineStyle: {
+            color: 'rgba(238,197,102,0.5)'
+          }
+        }
+      },
+      series: [
+        {
+
+          // 详情的名称 相对应  legend data的数据
+          name: 'center',
+          type: 'radar',
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: this.dataBJ,
+          symbol: 'none', // 数据连点是否显示
+          itemStyle: {  // 串联线的颜色
+            normal: {
+              color: '#f9713C'
+            }
+          },
+          areaStyle: {
+            normal: {
+              opacity: 0.1 // 区域颜色的透明度
+            }
+          }
+        },
+        {
+          name: 'server',
+          type: 'radar',
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: this.dataGz,
+          symbol: 'none',
+          itemStyle: {
+            normal: {
+              color: '#B3E4A1'
+            }
+          },
+          areaStyle: {
+            normal: {
+              opacity: 0.1
+            }
+          }
+        },
+        {
+          name: 'pool',
+          type: 'radar',
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: this.dataSH,
+          symbol: 'none',
+          itemStyle: {
+            normal: {
+              color: 'rgb(238, 197, 102)'
+            }
+          },
+          areaStyle: {
+            normal: {
+              opacity: 0.1
+            }
+          }
+        }
+      ]
     };
     this.echartstwo = {
+      backgroundColor: '#161627',
+      title: {
+        text: '数据中心统计',
+        subtext: '详细信息',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          mark: {
+            show: true
+          },
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          // dataZoom: {
+          //   show: true
+          // },
+          magicType: {
+            show: true,
+            // type: ['line', 'bar'],
+          },
+          restore: { show: true },
+          saveAsImage: { show: true }
+        }
+      },
+      legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 10,
+        top: 20,
+        bottom: 20,
+        data: this.barData
+      },
+      series: [
+        {
+          name: '具体数据',
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '60%'],
+          data: this.barData,
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 20,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
     };
+    // this.echartsthree = {
+    //   tooltip: {
+    //     formatter: '{a} <br/>{b}:{c}%'
+    //   },
+    //   series: [
+    //     {
+    //       name: '详细数据',
+    //       type: 'gauge',
+    //       detail: { formatter: '{value}%' },
+    //       data: [{ value: 50, name: '完成率' }]
+    //     }
+    //   ]
+    // }
   }
   onChartInit(e: any, i: number) {
     if (i === 0) {
       this.echartsInstance1 = e;
     } else if (i === 1) {
       this.echartsInstance2 = e;
+    } else if (i === 2) {
+      this.echartsInstance3 = e;
     }
   }
 }
