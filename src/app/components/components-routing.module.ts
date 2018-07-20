@@ -10,12 +10,14 @@ import { ChartPageComponent } from './chart-page/chart-page.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { CounterComponent } from './counter/counter.component';
 import { NewSliderComponent } from './home-page/new-slider/new-slider.component';
+import { DataEchartsComponent } from './data-echarts/data-echarts.component';
 const routes: Routes = [
     {
         path: 'home-page', component: HomePageComponent, children: [
             { path: '', redirectTo: '/overview-page', pathMatch: 'full' },
             { path: 'overview-page', component: OverviewPageComponent },
-            { path: 'chart-page', component: ChartPageComponent }
+            { path: 'chart-page', component: ChartPageComponent },
+            { path: 'data-echarts', component: DataEchartsComponent }
         ]
     },
 
@@ -37,5 +39,6 @@ export const routedComponents = [
     ChartPageComponent,
     WrapperComponent,
     CounterComponent,
-    NewSliderComponent
+    NewSliderComponent,
+    DataEchartsComponent
 ];

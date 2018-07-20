@@ -5,16 +5,20 @@
             <div class="operation">
                 <div>
                     <nz-dropdown [nzTrigger]="'click'">
-                        <a nz-dropdown>{{item?.lable}} <i class="anticon anticon-down"></i></a>
+                        <a nz-dropdown>{{item?.lable}}
+              <i class="anticon anticon-down"></i>
+            </a>
                         <ul nz-menu>
                             <li nz-menu-item (click)="removeItem(item,i)">
-                                <a><i class="anticon anticon-delete"></i>remove</a>
+                                <a>
+                                    <i class="anticon anticon-delete"></i>remove</a>
                             </li>
                             <li nz-submenu>
-                                <span title><i class="anticon anticon-area-chart"></i>数据来源</span>
+                                <span title>
+                  <i class="anticon anticon-area-chart"></i>数据来源</span>
                                 <ul>
                                     <li nz-menu-item (click)="addOptions(item,i,'Pool')">Pool</li>
-                                    <li nz-menu-item (click)="addOptions(item,i)">Center</li>
+                                    <li nz-menu-item (click)="addOptions(item,i,'Center')">Center</li>
                                 </ul>
                             </li>
                         </ul>

@@ -121,7 +121,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
         itemGap: 20,
         textStyle: {
           color: '#fff',
-          fontSize: 14
+          fontSize: '0.14rem'
         },
         selecteMode: 'single'
       },
@@ -365,37 +365,68 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
   removeItem(item, i) {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
-  addOptions(item, i, Pool) {
+  addOptions(item, i, value) {
     console.log(item);
-    if (item.id === 'demo1' && Pool === 'Pool') {
-      this.echarts0.series = [{
+    if (item.id === 'demo1') {
+      if (value === 'Pool') {
+        this.echarts0.series = [{
 
-        // 详情的名称 相对应  legend data的数据
-        name: 'pool',
-        type: 'radar',
-        lineStyle: {
-          normal: {
-            width: 1,
-            opacity: 0.5
+          // 详情的名称 相对应  legend data的数据
+          name: 'pool',
+          type: 'radar',
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: this.dataBJ,
+          symbol: 'none', // 数据连点是否显示
+          itemStyle: {  // 串联线的颜色
+            normal: {
+              color: '#f9713C'
+            }
+          },
+          areaStyle: {
+            normal: {
+              opacity: 0.1 // 区域颜色的透明度
+            }
           }
-        },
-        data: this.dataBJ,
-        symbol: 'none', // 数据连点是否显示
-        itemStyle: {  // 串联线的颜色
-          normal: {
-            color: '#f9713C'
+        }];
+      } else if (value === 'Center') {
+        this.echarts0.series = [{
+          name: 'center',
+          type: 'radar',
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: this.dataGz,
+          symbol: 'none',
+          itemStyle: {
+            normal: {
+              color: '#B3E4A1'
+            }
+          },
+          areaStyle: {
+            normal: {
+              opacity: 0.1
+            }
           }
-        },
-        areaStyle: {
-          normal: {
-            opacity: 0.1 // 区域颜色的透明度
-          }
-        }
-      }];
+        }];
+      }
+
       this.echartsInstance0.setOption(this.echarts0, true);
     } else if (item.id === 'demo2') {
-      this.echarts1.series[0].data = this.barDatas;
-      this.echartsInstance1.setOption(this.echarts1, true);
+      if (value === 'Pool') {
+        this.echarts1.series[0].data = this.barDatas;
+        this.echartsInstance1.setOption(this.echarts1, true);
+      } else if (value === 'Center') {
+        this.echarts1.series[0].data = this.barData;
+        this.echartsInstance1.setOption(this.echarts1, true);
+      }
     } else if (item.id === 'demo3') {
       console.log(3);
     }
