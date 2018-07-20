@@ -47,6 +47,10 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
     { 'name': 'center5', 'value': 53 },
     { 'name': 'center6', 'value': 15 },
   ];
+  barDatas: any = [
+    { 'name': 'center1', 'value': 50 },
+    { 'name': 'center2', 'value': 150 },
+  ];
   dragData: any = [
     { name: 'Radar Title' },
     { name: 'Pie Title' },
@@ -361,9 +365,9 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
   removeItem(item, i) {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
-  addOptions(item, i) {
+  addOptions(item, i, Pool) {
     console.log(item);
-    if (item.id === 'demo1') {
+    if (item.id === 'demo1' && Pool === 'Pool') {
       this.echarts0.series = [{
 
         // 详情的名称 相对应  legend data的数据
@@ -390,7 +394,8 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       }];
       this.echartsInstance0.setOption(this.echarts0, true);
     } else if (item.id === 'demo2') {
-      console.log(2);
+      this.echarts1.series[0].data = this.barDatas;
+      this.echartsInstance1.setOption(this.echarts1, true);
     } else if (item.id === 'demo3') {
       console.log(3);
     }
