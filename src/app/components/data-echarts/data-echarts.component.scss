@@ -1,0 +1,19 @@
+:host::ng-deep {
+    .data-charts-body {
+        height: 100%;
+        background: #171819;
+    }
+    .addecharts {
+        margin: 20px 10px;
+        .anticon-bar-chart {
+            color: #333;
+        }
+        .anticon-close {
+            color: #333;
+        }
+    }
+    .card-container {
+        background: #212124;
+        padding: 10px;
+    }
+}

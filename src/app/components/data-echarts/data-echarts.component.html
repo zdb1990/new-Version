@@ -1,3 +1,24 @@
-<p>
-  data-echarts works!
-</p>
+<div class="data-charts-body">
+    <button nz-button class="addecharts" nzType="default">
+    <i class="anticon anticon-bar-chart"></i>
+  </button>
+    <div nz-row>
+        <div nz-col nzSpan="10">
+            <div class="card-container">
+                <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
+                    <nz-tab [nzTitle]="'Add'">
+                        1
+                    </nz-tab>
+                    <nz-tab [nzTitle]="'Paste'">
+                        2
+                    </nz-tab>
+                </nz-tabset>
+                <ng-template #extraTemplate>
+                    <i class="anticon anticon-close" (click)="newTab()"></i>
+                </ng-template>
+            </div>
+
+
+        </div>
+    </div>
+</div>
