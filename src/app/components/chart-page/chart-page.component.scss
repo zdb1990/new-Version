@@ -2,4 +2,21 @@
     .chart-page {
         height: 100%;
     }
+    .operation {
+        width: 100%;
+        background: #161627;
+        text-align: center; // position: relative;
+        padding: 10px 0;
+    }
+    .gridster-item {
+        background: #161627;
+    }
+    #demo1,
+    #demo2,
+    #demo3 {
+        margin: 0 auto;
+    }
+    .ant-dropdown-link {
+        color: #ffffff;
+    }
 }

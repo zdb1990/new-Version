@@ -11,12 +11,12 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
 
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
+  public echartsInstance0: any;
   public echartsInstance1: any;
   public echartsInstance2: any;
-  public echartsInstance3: any;
-  echartsone: any;
-  echartstwo: any;
-  echartsthree: any;
+  echarts0: any;
+  echarts1: any;
+  echarts2: any;
   dataBJ: any = [
     [55, 9, 56, 0.46, 18, 6, 1],
     [25, 11, 21, 0.65, 34, 9, 2],
@@ -47,31 +47,37 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
     { 'name': 'center5', 'value': 53 },
     { 'name': 'center6', 'value': 15 },
   ];
+  dragData: any = [
+    { name: 'Radar Title' },
+    { name: 'Pie Title' },
+    { name: 'Panel Title' },
+  ];
+  selectedValue: String = '';
+  eventValue: any;
   constructor(private getechartsservice: GetEchartsService) { }
 
   ngOnInit() {
     let self = this;
     this.options = {
-      gridType: 'fixed',
+      gridType: 'fit',
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {
-          echarts.style.width = itemComponent.width + 'px';
-          echarts.style.height = itemComponent.height + 'px';
-          let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
+          echarts.style.width = itemComponent.width - 50 + 'px';
+          echarts.style.height = itemComponent.height - 50 + 'px';
+          let dom = { 'demo1': self.echartsInstance0, 'demo2': self.echartsInstance1, 'demo3': self.echartsInstance2 };
           dom[item.id].resize();
         }
       },
       itemResizeCallback: function (item, itemComponent) {
         let echarts = document.getElementById(`${item.id}`);
-
         if (echarts) {
-          echarts.style.width = itemComponent.width + 'px';
-          echarts.style.height = itemComponent.height + 'px';
-          let dom = { 'demo1': self.echartsInstance1, 'demo2': self.echartsInstance2 };
+          echarts.style.width = itemComponent.width - 50 + 'px';
+          echarts.style.height = itemComponent.height - 50 + 'px';
+          let dom = { 'demo1': self.echartsInstance0, 'demo2': self.echartsInstance1, 'demo3': self.echartsInstance2 };
           dom[item.id].resize();
         }
       },
@@ -88,13 +94,14 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       displayGrid: 'always'
     };
     this.dashboard = [
-      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1' },
-      { cols: 2, rows: 1, y: 0, x: 3, id: 'demo2' },
-      { cols: 2, rows: 1, y: 1, x: 3, id: 'demo3' }
+      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' },
+      { cols: 2, rows: 1, y: 0, x: 3, id: 'demo2', lable: 'Pie Title' },
+      { cols: 2, rows: 1, y: 1, x: 3, id: 'demo3', lable: 'Dashboard Title' }
     ];
   }
   ngAfterContentInit() {
-    this.echartsone = {
+    this.echarts0 = {
+      id: 'demo1',
       backgroundColor: '#161627',
       title: {
         text: '雷达图',
@@ -124,10 +131,11 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       toolbox: {
         show: true,
         feature: {
-          mark: { show: true },
-          dataView: { show: true, readOnly: false },
-          restore: { show: true },
-          saveAsImage: { show: true }
+          // mark: { show: true },
+
+          // dataView: { show: true, readOnly: false },
+          // restore: { show: true },
+          // saveAsImage: { show: true }
         }
       },
       radar: {
@@ -242,7 +250,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
         }
       ]
     };
-    this.echartstwo = {
+    this.echarts1 = {
       backgroundColor: '#161627',
       title: {
         text: '数据中心统计',
@@ -255,27 +263,27 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
           type: 'cross'
         }
       },
-      toolbox: {
-        show: true,
-        feature: {
-          mark: {
-            show: true
-          },
-          dataView: {
-            show: true,
-            readOnly: false
-          },
-          // dataZoom: {
-          //   show: true
-          // },
-          magicType: {
-            show: true,
-            // type: ['line', 'bar'],
-          },
-          restore: { show: true },
-          saveAsImage: { show: true }
-        }
-      },
+      // toolbox: {
+      //   show: true,
+      //   feature: {
+      //     mark: {
+      //       show: true
+      //     },
+      //     dataView: {
+      //       show: true,
+      //       readOnly: false
+      //     },
+      //     // dataZoom: {
+      //     //   show: true
+      //     // },
+      //     magicType: {
+      //       show: true,
+      //       // type: ['line', 'bar'],
+      //     },
+      //     restore: { show: true },
+      //     saveAsImage: { show: true }
+      //   }
+      // },
       legend: {
         type: 'scroll',
         orient: 'vertical',
@@ -299,29 +307,92 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
             }
           }
         }
+      ],
+      color: ['rgb(254,67,101)', 'rgb(252,157,154)', 'rgb(249,205,173)', 'rgb(200,200,169)', 'rgb(131,175,155)']
+
+    };
+    this.echarts2 = {
+      backgroundColor: '#161627',
+      tooltip: {
+        formatter: '{a} <br/>{b}:{c}%'
+      },
+      series: [
+        {
+          name: '详细数据',
+          type: 'gauge',
+          detail: { formatter: '{value}%' },
+          axisLine: {            // 坐标轴线
+            lineStyle: {       // 属性lineStyle控制线条样式
+              color: [[0.2, '#000000'], [0.8, '#63869e'], [1, '#91c7ae']]
+            }
+          },
+          data: [{ value: 50, name: '完成率' }]
+        }
+
       ]
     };
-    // this.echartsthree = {
-    //   tooltip: {
-    //     formatter: '{a} <br/>{b}:{c}%'
-    //   },
-    //   series: [
-    //     {
-    //       name: '详细数据',
-    //       type: 'gauge',
-    //       detail: { formatter: '{value}%' },
-    //       data: [{ value: 50, name: '完成率' }]
-    //     }
-    //   ]
-    // }
+    // setInterval(() => {
+    //   this.newMethod();
+    // }, 1000);
   }
+  // private newMethod() {
+  //   console.log(this.echartsInstance3);
+  //   if (this.echartsInstance3) {
+  //     this.echartsthree.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+  //     this.echartsInstance3.setOption(this.echartsthree, true);
+  //   }
+
+
+
+  // }
+
   onChartInit(e: any, i: number) {
+    // this.eventValue = e;
     if (i === 0) {
-      this.echartsInstance1 = e;
+      this.echartsInstance0 = e;
     } else if (i === 1) {
-      this.echartsInstance2 = e;
+      this.echartsInstance1 = e;
     } else if (i === 2) {
-      this.echartsInstance3 = e;
+      this.echartsInstance2 = e;
+    }
+    // console.log(this.eventValue);
+  }
+  // 删除
+  removeItem(item, i) {
+    this.dashboard.splice(this.dashboard.indexOf(item), 1);
+  }
+  addOptions(item, i) {
+    console.log(item);
+    if (item.id === 'demo1') {
+      this.echarts0.series = [{
+
+        // 详情的名称 相对应  legend data的数据
+        name: 'pool',
+        type: 'radar',
+        lineStyle: {
+          normal: {
+            width: 1,
+            opacity: 0.5
+          }
+        },
+        data: this.dataBJ,
+        symbol: 'none', // 数据连点是否显示
+        itemStyle: {  // 串联线的颜色
+          normal: {
+            color: '#f9713C'
+          }
+        },
+        areaStyle: {
+          normal: {
+            opacity: 0.1 // 区域颜色的透明度
+          }
+        }
+      }];
+      this.echartsInstance0.setOption(this.echarts0, true);
+    } else if (item.id === 'demo2') {
+      console.log(2);
+    } else if (item.id === 'demo3') {
+      console.log(3);
     }
   }
 }
