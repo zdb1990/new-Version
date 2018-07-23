@@ -1,8 +1,8 @@
-<div>
+<div *ngIf="boxShow">
     <ng-content select=".addEcharts">
 
     </ng-content>
 </div>
-<div>
+<div *ngIf="!boxShow">
     <ng-content select=".echarts"></ng-content>
 </div>

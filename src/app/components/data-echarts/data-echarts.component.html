@@ -5,11 +5,11 @@
     <div nz-row>
         <div nz-col nzSpan="10">
             <div class="card-container" *ngIf="cardTable">
-                <uxsino-charts-content>
+                <uxsino-charts-content [boxShow]="boxShow">
                     <div class="addEcharts">
                         <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
                             <nz-tab [nzTitle]="'Add'">
-                                <nz-card>
+                                <nz-card (click)="ShowLine()">
                                     <div nz-card-grid>
                                         <span>
                       <i class="anticon anticon-line-chart"></i>
@@ -45,9 +45,9 @@
                         </ng-template>
                     </div>
                 </uxsino-charts-content>
-                <uxsino-charts-content>
+                <uxsino-charts-content [boxShow]="boxShow">
                     <div class="echarts">
-                        1111111
+                        <div echarts [options]="myOptions"></div>
                     </div>
                 </uxsino-charts-content>
             </div>

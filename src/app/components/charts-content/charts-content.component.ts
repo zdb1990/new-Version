@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'uxsino-charts-content',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charts-content.component.scss']
 })
 export class ChartsContentComponent implements OnInit {
-
+  @Input() boxShow: Boolean;
   constructor() { }
 
   ngOnInit() {
