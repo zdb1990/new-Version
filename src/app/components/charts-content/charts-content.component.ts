@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'uxsino-charts-content',
@@ -7,9 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChartsContentComponent implements OnInit {
   @Input() boxShow: Boolean;
+
+
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
+  changedash(event) {
+    console.log(event);
+  }
 }

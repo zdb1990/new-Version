@@ -2,9 +2,9 @@
     <button nz-button class="addecharts" nzType="default" (click)="showCard()">
     <i class="anticon anticon-bar-chart"></i>
   </button>
-    <div nz-row>
-        <div nz-col nzSpan="10">
-            <div class="card-container" *ngIf="cardTable">
+    <gridster [options]="options" *ngIf="cardTable">
+        <gridster-item [item]="item" *ngFor="let item of dashboard" class="cardbox">
+            <div class="card-container">
                 <uxsino-charts-content [boxShow]="boxShow">
                     <div class="addEcharts">
                         <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
@@ -45,15 +45,16 @@
                         </ng-template>
                     </div>
                 </uxsino-charts-content>
-                <uxsino-charts-content [boxShow]="boxShow">
+                <uxsino-charts-content [boxShow]="boxShow" (changedash)="changedash($event)">
                     <div class="echarts">
+                        <uxsino-select-tree></uxsino-select-tree>
                         <div echarts [options]="myOptions"></div>
                     </div>
                 </uxsino-charts-content>
             </div>
+        </gridster-item>
+    </gridster>
 
 
-        </div>
 
-    </div>
 </div>

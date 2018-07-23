@@ -12,6 +12,7 @@ import { CounterComponent } from './counter/counter.component';
 import { NewSliderComponent } from './home-page/new-slider/new-slider.component';
 import { DataEchartsComponent } from './data-echarts/data-echarts.component';
 import { ChartsContentComponent } from './charts-content/charts-content.component';
+import { SelectTreeComponent } from './select-tree/select-tree.component';
 const routes: Routes = [
     {
         path: 'home-page', component: HomePageComponent, children: [
@@ -42,5 +43,6 @@ export const routedComponents = [
     CounterComponent,
     NewSliderComponent,
     DataEchartsComponent,
-    ChartsContentComponent
+    ChartsContentComponent,
+    SelectTreeComponent
 ];
