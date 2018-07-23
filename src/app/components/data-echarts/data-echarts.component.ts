@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data-echarts.component.scss']
 })
 export class DataEchartsComponent implements OnInit {
-
+  cardTable: Boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
-
+  showCard() {
+    this.cardTable = true;
+  }
+  deleteTab() {
+    this.cardTable = false;
+  }
 }

@@ -1,41 +1,59 @@
 <div class="data-charts-body">
-    <button nz-button class="addecharts" nzType="default">
+    <button nz-button class="addecharts" nzType="default" (click)="showCard()">
     <i class="anticon anticon-bar-chart"></i>
   </button>
     <div nz-row>
         <div nz-col nzSpan="10">
-            <div class="card-container">
-                <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
-                    <nz-tab [nzTitle]="'Add'">
-                        <nz-card>
-                            <div nz-card-grid>
-                                <span><i class="anticon anticon-line-chart"></i></span>
-                                <div>Graph</div>
-                            </div>
-                            <div nz-card-grid>
-                                <span><i class="anticon anticon-retweet"></i></span>
-                                <div>Singlestat</div>
-                            </div>
-                            <div nz-card-grid>
-                                <span><i class="anticon anticon-table"></i></span>
-                                <div>Table</div>
-                            </div>
-                            <div nz-card-grid>
-                                <span><i class="anticon anticon-edit"></i></span>
-                                <div>Text</div>
-                            </div>
-                        </nz-card>
-                    </nz-tab>
-                    <nz-tab [nzTitle]="'Paste'">
-                        2
-                    </nz-tab>
-                </nz-tabset>
-                <ng-template #extraTemplate>
-                    <i class="anticon anticon-close" (click)="newTab()"></i>
-                </ng-template>
+            <div class="card-container" *ngIf="cardTable">
+                <uxsino-charts-content>
+                    <div class="addEcharts">
+                        <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
+                            <nz-tab [nzTitle]="'Add'">
+                                <nz-card>
+                                    <div nz-card-grid>
+                                        <span>
+                      <i class="anticon anticon-line-chart"></i>
+                    </span>
+                                        <div>Graph</div>
+                                    </div>
+                                    <div nz-card-grid>
+                                        <span>
+                      <i class="anticon anticon-retweet"></i>
+                    </span>
+                                        <div>Singlestat</div>
+                                    </div>
+                                    <div nz-card-grid>
+                                        <span>
+                      <i class="anticon anticon-table"></i>
+                    </span>
+                                        <div>Table</div>
+                                    </div>
+                                    <div nz-card-grid>
+                                        <span>
+                      <i class="anticon anticon-edit"></i>
+                    </span>
+                                        <div>Text</div>
+                                    </div>
+                                </nz-card>
+                            </nz-tab>
+                            <nz-tab [nzTitle]="'Paste'">
+                                2
+                            </nz-tab>
+                        </nz-tabset>
+                        <ng-template #extraTemplate>
+                            <i class="anticon anticon-close" (click)="deleteTab()"></i>
+                        </ng-template>
+                    </div>
+                </uxsino-charts-content>
+                <uxsino-charts-content>
+                    <div class="echarts">
+                        1111111
+                    </div>
+                </uxsino-charts-content>
             </div>
 
 
         </div>
+
     </div>
 </div>
