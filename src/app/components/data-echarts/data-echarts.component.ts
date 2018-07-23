@@ -1,17 +1,17 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 @Component({
   selector: 'uxsino-data-echarts',
   templateUrl: './data-echarts.component.html',
   styleUrls: ['./data-echarts.component.scss']
 })
-export class DataEchartsComponent implements OnInit, AfterContentInit {
+export class DataEchartsComponent implements OnInit {
   cardTable: Boolean = false;
   boxShow: Boolean = true;
   myOptions: any;
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
-  type: String = 'line';
+
   constructor() { }
 
   ngOnInit() {
@@ -36,28 +36,15 @@ export class DataEchartsComponent implements OnInit, AfterContentInit {
   }
 
 
-  ngAfterContentInit() {
-    this.myOptions = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: this.type
-      }]
-    }
-  }
+
   showCard() {
     this.cardTable = true;
   }
-  deleteTab() {
-    this.cardTable = false;
+
+  dispach(event) {
+    console.log(event);
+    this.dashboard = event;
+    // this.boxShow = false;
   }
-  ShowLine() {
-    this.boxShow = false;
-  }
+
 }

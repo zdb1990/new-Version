@@ -1,8 +1,46 @@
 <div *ngIf="boxShow">
-    <ng-content select=".addEcharts">
-
-    </ng-content>
+    <div class="addEcharts">
+        <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
+            <nz-tab [nzTitle]="'Add'">
+                <nz-card (click)="ShowLine()">
+                    <div nz-card-grid>
+                        <span>
+              <i class="anticon anticon-line-chart"></i>
+            </span>
+                        <div>Graph</div>
+                    </div>
+                    <div nz-card-grid>
+                        <span>
+              <i class="anticon anticon-retweet"></i>
+            </span>
+                        <div>Singlestat</div>
+                    </div>
+                    <div nz-card-grid>
+                        <span>
+              <i class="anticon anticon-table"></i>
+            </span>
+                        <div>Table</div>
+                    </div>
+                    <div nz-card-grid>
+                        <span>
+              <i class="anticon anticon-edit"></i>
+            </span>
+                        <div>Text</div>
+                    </div>
+                </nz-card>
+            </nz-tab>
+            <nz-tab [nzTitle]="'Paste'">
+                2
+            </nz-tab>
+        </nz-tabset>
+        <ng-template #extraTemplate>
+            <i class="anticon anticon-close" (click)="deleteTab()"></i>
+        </ng-template>
+    </div>
 </div>
 <div *ngIf="!boxShow">
-    <ng-content select=".echarts"></ng-content>
+    <div class="echarts">
+        <uxsino-select-tree (changedash)="changedash($event)"></uxsino-select-tree>
+        <div echarts [options]="myOptions"></div>
+    </div>
 </div>

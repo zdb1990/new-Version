@@ -23,6 +23,7 @@ export class SelectTreeComponent implements OnInit {
       ]
     },
     { name: '删除', icon: 'delete' },
+    { name: '返回', icon: 'retweet' }
   ];
   @Output() private changedash = new EventEmitter();
 
@@ -40,8 +41,10 @@ export class SelectTreeComponent implements OnInit {
   operation(value) {
     console.log(value);
     if (value === '查看') {
-      this.changedash.emit({ cols: 5, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' });
+      this.changedash.emit('查看');
       console.log(this.changedash);
+    } else if (value === '返回') {
+      this.changedash.emit('返回');
     }
   }
 }

@@ -5,56 +5,8 @@
     <gridster [options]="options" *ngIf="cardTable">
         <gridster-item [item]="item" *ngFor="let item of dashboard" class="cardbox">
             <div class="card-container">
-                <uxsino-charts-content [boxShow]="boxShow">
-                    <div class="addEcharts">
-                        <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
-                            <nz-tab [nzTitle]="'Add'">
-                                <nz-card (click)="ShowLine()">
-                                    <div nz-card-grid>
-                                        <span>
-                      <i class="anticon anticon-line-chart"></i>
-                    </span>
-                                        <div>Graph</div>
-                                    </div>
-                                    <div nz-card-grid>
-                                        <span>
-                      <i class="anticon anticon-retweet"></i>
-                    </span>
-                                        <div>Singlestat</div>
-                                    </div>
-                                    <div nz-card-grid>
-                                        <span>
-                      <i class="anticon anticon-table"></i>
-                    </span>
-                                        <div>Table</div>
-                                    </div>
-                                    <div nz-card-grid>
-                                        <span>
-                      <i class="anticon anticon-edit"></i>
-                    </span>
-                                        <div>Text</div>
-                                    </div>
-                                </nz-card>
-                            </nz-tab>
-                            <nz-tab [nzTitle]="'Paste'">
-                                2
-                            </nz-tab>
-                        </nz-tabset>
-                        <ng-template #extraTemplate>
-                            <i class="anticon anticon-close" (click)="deleteTab()"></i>
-                        </ng-template>
-                    </div>
-                </uxsino-charts-content>
-                <uxsino-charts-content [boxShow]="boxShow" (changedash)="changedash($event)">
-                    <div class="echarts">
-                        <uxsino-select-tree></uxsino-select-tree>
-                        <div echarts [options]="myOptions"></div>
-                    </div>
-                </uxsino-charts-content>
+                <uxsino-charts-content [dashboard]="dashboard" (dispach)="dispach($event)" [boxShow]="boxShow"></uxsino-charts-content>
             </div>
         </gridster-item>
     </gridster>
-
-
-
 </div>
