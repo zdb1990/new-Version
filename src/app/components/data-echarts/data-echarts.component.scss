@@ -16,4 +16,30 @@
         background: #212124;
         padding: 10px;
     }
+    .ant-tabs-extra-content .anticon-close {
+        color: #ffffff;
+    }
+    .ant-card {
+        background-color: #212124;
+        border: none;
+    }
+    .ant-card-grid:hover {
+        background: linear-gradient(135deg, #343436, #262628);
+    }
+    .ant-card-grid {
+        box-shadow: -1px -1px 0 0 hsla(0, 0%, 100%, .1), 1px 1px 0 0 rgba(0, 0, 0, .3);
+        color: #ffffff;
+    }
+    .ant-tabs-tab {
+        background: linear-gradient(135deg, #343436, #262628) !important;
+        color: #ffffff !important;
+        border: #333 !important;
+    }
+    .ant-card-grid {
+        text-align: center;
+        .anticon {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+    }
 }

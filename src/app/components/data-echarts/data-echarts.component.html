@@ -7,7 +7,24 @@
             <div class="card-container">
                 <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
                     <nz-tab [nzTitle]="'Add'">
-                        1
+                        <nz-card>
+                            <div nz-card-grid>
+                                <span><i class="anticon anticon-line-chart"></i></span>
+                                <div>Graph</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span><i class="anticon anticon-retweet"></i></span>
+                                <div>Singlestat</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span><i class="anticon anticon-table"></i></span>
+                                <div>Table</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span><i class="anticon anticon-edit"></i></span>
+                                <div>Text</div>
+                            </div>
+                        </nz-card>
                     </nz-tab>
                     <nz-tab [nzTitle]="'Paste'">
                         2
