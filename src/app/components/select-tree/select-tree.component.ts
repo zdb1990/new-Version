@@ -9,6 +9,7 @@ export class SelectTreeComponent implements OnInit {
   showTitle: Boolean = false;
   showMenu: Boolean = false;
   activeIndex: Number = 0;
+  @Output() private changedispach = new EventEmitter();
   listData: any = [
     { name: '查看', icon: 'eye-o' },
     { name: '编辑', icon: 'edit' },
@@ -25,7 +26,7 @@ export class SelectTreeComponent implements OnInit {
     { name: '删除', icon: 'delete' },
     { name: '返回', icon: 'retweet' }
   ];
-  @Output() private changedash = new EventEmitter();
+
 
   constructor() { }
 
@@ -41,10 +42,9 @@ export class SelectTreeComponent implements OnInit {
   operation(value) {
     console.log(value);
     if (value === '查看') {
-      this.changedash.emit('查看');
-      console.log(this.changedash);
+      this.changedispach.emit([{ cols: 6, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' }]);
     } else if (value === '返回') {
-      this.changedash.emit('返回');
+
     }
   }
 }

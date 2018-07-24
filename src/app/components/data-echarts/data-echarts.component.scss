@@ -12,9 +12,11 @@
             color: #333;
         }
     }
+    .data-charts-content {
+        height: 100%;
+    }
     .card-container {
-        background: #212124;
-        padding: 10px;
+        height: 100%;
     }
     .ant-tabs-extra-content .anticon-close {
         color: #ffffff;
@@ -44,5 +46,8 @@
     }
     .cardbox {
         background: #212124;
+    }
+    .gridster-box {
+        background: #171819;
     }
 }

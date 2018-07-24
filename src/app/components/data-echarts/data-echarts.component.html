@@ -2,11 +2,10 @@
     <button nz-button class="addecharts" nzType="default" (click)="showCard()">
     <i class="anticon anticon-bar-chart"></i>
   </button>
-    <gridster [options]="options" *ngIf="cardTable">
-        <gridster-item [item]="item" *ngFor="let item of dashboard" class="cardbox">
-            <div class="card-container">
-                <uxsino-charts-content [dashboard]="dashboard" (dispach)="dispach($event)" [boxShow]="boxShow"></uxsino-charts-content>
-            </div>
-        </gridster-item>
-    </gridster>
+    <div class="data-charts-content">
+        <div class="card-container">
+            <uxsino-charts-content (deleteTable)="deleteTable($event)" [cardTable]="cardTable"></uxsino-charts-content>
+        </div>
+    </div>
+
 </div>

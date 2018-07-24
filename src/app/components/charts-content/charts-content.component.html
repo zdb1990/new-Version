@@ -1,46 +1,54 @@
-<div *ngIf="boxShow">
-    <div class="addEcharts">
-        <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
-            <nz-tab [nzTitle]="'Add'">
-                <nz-card (click)="ShowLine()">
-                    <div nz-card-grid>
-                        <span>
-              <i class="anticon anticon-line-chart"></i>
-            </span>
-                        <div>Graph</div>
-                    </div>
-                    <div nz-card-grid>
-                        <span>
-              <i class="anticon anticon-retweet"></i>
-            </span>
-                        <div>Singlestat</div>
-                    </div>
-                    <div nz-card-grid>
-                        <span>
-              <i class="anticon anticon-table"></i>
-            </span>
-                        <div>Table</div>
-                    </div>
-                    <div nz-card-grid>
-                        <span>
-              <i class="anticon anticon-edit"></i>
-            </span>
-                        <div>Text</div>
-                    </div>
-                </nz-card>
-            </nz-tab>
-            <nz-tab [nzTitle]="'Paste'">
-                2
-            </nz-tab>
-        </nz-tabset>
-        <ng-template #extraTemplate>
-            <i class="anticon anticon-close" (click)="deleteTab()"></i>
-        </ng-template>
+<div class="echarts-content" [ngSwitch]="charttype">
+    <gridster [options]="options" *ngIf="cardTable" class="gridster-box">
+        <gridster-item [item]="item" *ngFor="let item of dashboard" class="cardbox">
+            <div class="charts-List" *ngSwitchCase="'default'">
+                <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
+                    <nz-tab [nzTitle]="'Add'">
+                        <nz-card (click)="ShowLine()">
+                            <div nz-card-grid>
+                                <span>
+                  <i class="anticon anticon-line-chart"></i>
+                </span>
+                                <div>Graph</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span>
+                  <i class="anticon anticon-retweet"></i>
+                </span>
+                                <div>Singlestat</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span>
+                  <i class="anticon anticon-table"></i>
+                </span>
+                                <div>Table</div>
+                            </div>
+                            <div nz-card-grid>
+                                <span>
+                  <i class="anticon anticon-edit"></i>
+                </span>
+                                <div>Text</div>
+                            </div>
+                        </nz-card>
+                    </nz-tab>
+                    <nz-tab [nzTitle]="'Paste'">
+                        2
+                    </nz-tab>
+                </nz-tabset>
+                <ng-template #extraTemplate>
+                    <i class="anticon anticon-close" (click)="deleteTab()"></i>
+                </ng-template>
+            </div>
+            <div class="charts-content" *ngSwitchCase="'line'">
+                <uxsino-select-tree (changedispach)="changedispach($event)"></uxsino-select-tree>
+                <div echarts [options]="myOptions" (chartInit)="onChartInit($event)" id="demo1"></div>
+            </div>
+        </gridster-item>
+    </gridster>
+
+    <div class="Edit-box">
+
     </div>
-</div>
-<div *ngIf="!boxShow">
-    <div class="echarts">
-        <uxsino-select-tree (changedash)="changedash($event)"></uxsino-select-tree>
-        <div echarts [options]="myOptions"></div>
-    </div>
+
+
 </div>
