@@ -65,7 +65,7 @@
                     <div nz-col nzSpan="4" nzOffset="1">
                         <div style="margin-bottom: 16px;">
                             <nz-input-group [nzAddOnBefore]="Yxes">
-                                <input type="text" nz-input [(ngModel)]="YxesValue">
+                                <input type="text" nz-input [(ngModel)]="YxesValue" placeholder="例如:输入12,34格式">
                             </nz-input-group>
                             <ng-template #Yxes>
                                 Yxes
@@ -75,7 +75,7 @@
                     <div nz-col nzSpan="4" nzOffset="1">
                         <div style="margin-bottom: 16px;">
                             <nz-input-group [nzAddOnBefore]="Type">
-                                <input type="text" nz-input [(ngModel)]="TypeValue">
+                                <input type="text" nz-input [(ngModel)]="TypeValue" placeholder="例如:pie,line,bar">
                             </nz-input-group>
                             <ng-template #Type>
                                 Type

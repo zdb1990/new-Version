@@ -74,7 +74,6 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
       },
       yAxis: {
         type: 'value',
-        data: []
       },
       series: [{
         data: [820, 932, 901, 934, 1290, 1330, 1320],
@@ -105,10 +104,16 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
     // console.log(this.XxesValue);
 
     // if (this.XxesValue) {
-    //   this.XxesValue = this.XxesValue.split(',');
-    //   this.myOptions.xAxis.data = this.XxesValue;
-    //   this.echartsInit.setOption(this.myOptions, true);
-    // }
+    this.XxesValue = this.XxesValue.split(',');
+    this.myOptions.xAxis.data = this.XxesValue;
+    this.YxesValue = this.YxesValue.split(',');
+    this.myOptions.yAxis.type = 'category';
+    this.myOptions.yAxis.data = this.YxesValue;
+    this.myOptions.series[0].type = this.TypeValue;
+    this.echartsInit.setOption(this.myOptions, true);
+    this.showEdit = false;
+    this.XxesValue = '';
+    this.YxesValue = '';
 
 
     // // let Yvalue = this.YxesValue.trim();
