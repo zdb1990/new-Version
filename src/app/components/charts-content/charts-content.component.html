@@ -2,6 +2,7 @@
     <gridster [options]="options" *ngIf="cardTable" class="gridster-box">
         <gridster-item [item]="item" *ngFor="let item of dashboard" class="cardbox">
             <div class="charts-List" *ngSwitchCase="'default'">
+
                 <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
                     <nz-tab [nzTitle]="'Add'">
                         <nz-card (click)="ShowLine()">
@@ -46,9 +47,58 @@
         </gridster-item>
     </gridster>
 
-    <div class="Edit-box">
 
+    <div class="Edit-box" *ngIf="showEdit">
+        <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+            <nz-tab [nzTitle]="'modify'">
+                <div nz-row>
+                    <div nz-col nzSpan="4" nzOffset="1">
+                        <div style="margin-bottom: 16px;">
+                            <nz-input-group [nzAddOnBefore]="Xxes">
+                                <input type="text" nz-input [(ngModel)]="XxesValue" placeholder="例如:输入12,34格式">
+                            </nz-input-group>
+                            <ng-template #Xxes>
+                                Xxes
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="4" nzOffset="1">
+                        <div style="margin-bottom: 16px;">
+                            <nz-input-group [nzAddOnBefore]="Yxes">
+                                <input type="text" nz-input [(ngModel)]="YxesValue">
+                            </nz-input-group>
+                            <ng-template #Yxes>
+                                Yxes
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="4" nzOffset="1">
+                        <div style="margin-bottom: 16px;">
+                            <nz-input-group [nzAddOnBefore]="Type">
+                                <input type="text" nz-input [(ngModel)]="TypeValue">
+                            </nz-input-group>
+                            <ng-template #Type>
+                                Type
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="4" nzOffset="1">
+                        <div style="margin-bottom: 16px;">
+                            <nz-input-group [nzAddOnBefore]="Format">
+                                <input type="text" nz-input [(ngModel)]="FormatValue">
+                            </nz-input-group>
+                            <ng-template #Format>
+                                Format
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="2" nzOffset="22">
+                        <button nz-button nzType="default" class="Edit-submit" (click)="EditSubmit()">保存</button>
+                    </div>
+                </div>
+            </nz-tab>
+
+        </nz-tabset>
     </div>
-
 
 </div>

@@ -15,14 +15,36 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
   @Input() cardTable: Boolean = false;
   @Output() deleteTable = new EventEmitter();
   echartsInit: any;
+  showEdit: Boolean = false;
+  XxesValue: any;
+  YxesValue: any;
+  TypeValue: any;
+  FormatValue: any;
   constructor(private zone: NgZone) { }
 
   ngOnInit() {
     // 拖拽初始化配置
+    let self = this;
     this.options = {
       gridType: 'fixed',
       compactType: 'none',
       margin: 10,
+      itemChangeCallback: function (item, itemComponent) {
+        let echarts = document.getElementById(`${item.id}`);
+        if (echarts) {
+          echarts.style.width = itemComponent.width - 30 + 'px';
+          echarts.style.height = itemComponent.height - 30 + 'px';
+          self.echartsInit.resize();
+        }
+      },
+      itemResizeCallback: function (item, itemComponent) {
+        let echarts = document.getElementById(`${item.id}`);
+        if (echarts) {
+          echarts.style.width = itemComponent.width - 30 + 'px';
+          echarts.style.height = itemComponent.height - 30 + 'px';
+          self.echartsInit.resize();
+        }
+      },
       draggable: { /*是否可拖拽*/
         enabled: true
       },
@@ -35,8 +57,9 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
       displayGrid: 'none'
     };
     this.dashboard = [
-      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' },
+      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1' },
     ];
+
   }
   // 创建图表类型
   ShowLine() {
@@ -50,16 +73,14 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        data: []
       },
       series: [{
         data: [820, 932, 901, 934, 1290, 1330, 1320],
         type: this.type
       }]
     };
-    // 图表初始化显示
-
-    // $('#demo1').removeAttr('_echarts_instance_');
   }
 
   // 删除表格
@@ -68,20 +89,34 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
   }
 
   onChartInit(event) {
-    console.log(event);
     this.echartsInit = event;
   }
   changedispach(event) {
-    this.dashboard = event;
+    if (event === 'default') {
+      this.charttype = event;
+    } else if (event === 'edit') {
+      this.showEdit = true;
+    } else {
+      this.dashboard = event;
+    }
+  }
+  // 保存
+  EditSubmit() {
+    // console.log(this.XxesValue);
 
-    // console.log(1);
-    this.myOptions.series[0].data = [13, 67, 34, 23, 22];
-    console.log(this.myOptions, this.echartsInit);
-    this.echartsInit.setOption(this.myOptions, true);
-  };
-  // this.myOptions = Object.assign({}, this.myOptions);
+    // if (this.XxesValue) {
+    //   this.XxesValue = this.XxesValue.split(',');
+    //   this.myOptions.xAxis.data = this.XxesValue;
+    //   this.echartsInit.setOption(this.myOptions, true);
+    // }
 
 
-  // this.echartsInit.setOption(this.myOptions, true)
+    // // let Yvalue = this.YxesValue.trim();
+    // this.YxesValue = this.YxesValue.split(',');
+    // // console.log(this.YxesValue);
+    // this.myOptions.yAxis.data = this.YxesValue;
+    // this.echartsInit.setOption(this.myOptions, true);
 
+
+  }
 }

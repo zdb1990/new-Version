@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'uxsino-select-tree',
@@ -42,9 +42,12 @@ export class SelectTreeComponent implements OnInit {
   operation(value) {
     console.log(value);
     if (value === '查看') {
-      this.changedispach.emit([{ cols: 6, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' }]);
+      this.changedispach.emit([{ cols: 5, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' }]);
     } else if (value === '返回') {
-
+      this.changedispach.emit('default');
+    } else if (value === '编辑') {
+      this.changedispach.emit('edit');
+      this.showMenu = false;
     }
   }
 }
