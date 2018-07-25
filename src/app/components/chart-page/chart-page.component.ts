@@ -10,13 +10,14 @@ import { GetEchartsService } from '../../service/getEcharts.service';
 export class ChartPageComponent implements OnInit, AfterContentInit {
 
   options: GridsterConfig;
-  dashboard: Array<GridsterItem> = [];
+  dashboard: Array<GridsterItem>;
   public echartsInstance0: any;
   public echartsInstance1: any;
   public echartsInstance2: any;
   echarts0: any;
   echarts1: any;
   echarts2: any;
+  itemarr: any = [];
   dataBJ: any = [
     [55, 9, 56, 0.46, 18, 6, 1],
     [25, 11, 21, 0.65, 34, 9, 2],
@@ -72,7 +73,23 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
+        let arr = [];
         console.log(item);
+        self.itemarr.push(item);
+        console.log(self.itemarr);
+        for (let i = 0; i < self.itemarr.length; i++) {
+          if (self.itemarr[i].id === 'demo1') {
+            arr.push(i);
+            for (let j = 0; j < arr.lenght; i++) {
+              var index = 0;
+              if (index < arr[j]) {
+                index = arr[j];
+              }
+            }
+          }
+
+        }
+        console.log(arr);
         // if (item.id === 'demo1') {
         //   item = JSON.stringify(item);
         //   localStorage.setItem('demo1', item);
