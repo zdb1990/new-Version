@@ -10,7 +10,7 @@ import { GetEchartsService } from '../../service/getEcharts.service';
 export class ChartPageComponent implements OnInit, AfterContentInit {
 
   options: GridsterConfig;
-  dashboard: Array<GridsterItem>;
+  dashboard: Array<GridsterItem> = [];
   public echartsInstance0: any;
   public echartsInstance1: any;
   public echartsInstance2: any;
@@ -61,13 +61,23 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
   constructor(private getechartsservice: GetEchartsService) { }
 
   ngOnInit() {
+    // console.log(localStorage.getItem('demo1'));
+    // if (localStorage.getItem('demo1')) {
+    //   let item = JSON.parse(localStorage.getItem('demo1'));
+    //   this.dashboard[0] = item;
+    // }
     let self = this;
     this.options = {
       gridType: 'fit',
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
-        console.log(itemComponent);
+        console.log(item);
+        // if (item.id === 'demo1') {
+        //   item = JSON.stringify(item);
+        //   localStorage.setItem('demo1', item);
+        // }
+        // let arr={'demo1':}
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {
@@ -78,6 +88,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
         }
       },
       itemResizeCallback: function (item, itemComponent) {
+        // console.log(item);
         let echarts = document.getElementById(`${item.id}`);
         if (echarts) {
           echarts.style.width = itemComponent.width - 50 + 'px';
