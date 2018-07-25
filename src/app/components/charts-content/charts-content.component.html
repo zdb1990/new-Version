@@ -48,34 +48,20 @@
     </gridster>
 
 
-    <div class="Edit-box" *ngIf="showEdit">
+    <div class="Edit-box" *ngIf="showEdit" style="height:400px">
         <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
             <nz-tab [nzTitle]="'modify'">
                 <div nz-row>
                     <div nz-col nzSpan="4" nzOffset="1">
                         <div style="margin-bottom: 16px;">
-                            <nz-input-group [nzAddOnBefore]="Xxes">
-                                <input type="text" nz-input [(ngModel)]="XxesValue" placeholder="例如:输入12,34格式">
-                            </nz-input-group>
-                            <ng-template #Xxes>
-                                Xxes
-                            </ng-template>
-                        </div>
-                    </div>
-                    <div nz-col nzSpan="4" nzOffset="1">
-                        <div style="margin-bottom: 16px;">
-                            <nz-input-group [nzAddOnBefore]="Yxes">
-                                <input type="text" nz-input [(ngModel)]="YxesValue" placeholder="例如:输入12,34格式">
-                            </nz-input-group>
-                            <ng-template #Yxes>
-                                Yxes
-                            </ng-template>
-                        </div>
-                    </div>
-                    <div nz-col nzSpan="4" nzOffset="1">
-                        <div style="margin-bottom: 16px;">
                             <nz-input-group [nzAddOnBefore]="Type">
-                                <input type="text" nz-input [(ngModel)]="TypeValue" placeholder="例如:pie,line,bar">
+                                <nz-select style="width:120px" [(ngModel)]="selectedValue" (ngModelChange)="Modelchange(selectedValue)" nzAllowClear nzPlaceHolder="请输入图表类型">
+                                    <nz-option nzValue="Gauge" nzLabel="Gauge"></nz-option>
+                                    <nz-option nzValue="Bar" nzLabel="Bar"></nz-option>
+                                    <nz-option nzValue="Pie" nzLabel="Pie"></nz-option>
+                                    <nz-option nzValue="Radar" nzLabel="Radar"></nz-option>
+                                    <nz-option nzValue="Line" nzLabel="Line"></nz-option>
+                                </nz-select>
                             </nz-input-group>
                             <ng-template #Type>
                                 Type

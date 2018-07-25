@@ -16,10 +16,8 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
   @Output() deleteTable = new EventEmitter();
   echartsInit: any;
   showEdit: Boolean = false;
-  XxesValue: any;
-  YxesValue: any;
-  TypeValue: any;
-  FormatValue: any;
+  selectedValue: any;
+  item: Number = 0;
   constructor(private zone: NgZone) { }
 
   ngOnInit() {
@@ -76,8 +74,8 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
         type: 'value',
       },
       series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: this.type
+        data: [10, 23, 21, 30, 40, 99, 27],
+        type: 'line'
       }]
     };
   }
@@ -99,29 +97,92 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
       this.dashboard = event;
     }
   }
-  // 保存
-  EditSubmit() {
-    // console.log(this.XxesValue);
+  // 选择图形
+  Modelchange(value) {
+    console.log(value);
+    if (value === 'Gauge') {
+      this.myOptions = {
+        tooltip: {
+          formatter: '{a} <br/>{b} : {c}%'
+        },
+        series: [
+          {
+            name: 'center中心',
+            type: 'gauge',
+            detail: { formatter: '{value}%' },
+            data: [{ value: 10, name: '数据' }]
+          }
+        ]
+      };
+      // setInterval(() => {
+      //   this.item++;
+      //   let arr = [10, 23, 21, 30, 40, 99, 27];
+      //   if (this.item > arr.length - 1) {
+      //     this.item = 0;
+      //   }
+      //   this.myOptions.series[0].data[0].value = arr[this.item];
+      //   this.echartsInit.setOption(this.myOptions, true);
+      // }, 1000);
+    } else if (value === 'Line') {
+      this.myOptions = {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [{
+          data: [10, 23, 21, 30, 40, 99, 27],
+          type: this.type
+        }]
+      };
+      this.echartsInit.setOption(this.myOptions, true);
+    } else if (value === 'Bar') {
+      this.myOptions = {
+        title: {
+          text: 'center中心',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        series: [
+          {
+            name: '数据来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              { value: 10, name: 'Mon' },
+              { value: 23, name: 'Tue' },
+              { value: 21, name: 'Wed' },
+              { value: 30, name: 'Thu' },
+              { value: 40, name: 'Fri' },
+              { value: 99, name: 'Sat' },
+              { value: 27, name: 'Sun' }
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+      this.echartsInit.setOption(this.myOptions, true);
+    } else if (value === 'Radar') {
+      this.myOptions = {
 
-    // if (this.XxesValue) {
-    this.XxesValue = this.XxesValue.split(',');
-    this.myOptions.xAxis.data = this.XxesValue;
-    this.YxesValue = this.YxesValue.split(',');
-    this.myOptions.yAxis.type = 'category';
-    this.myOptions.yAxis.data = this.YxesValue;
-    this.myOptions.series[0].type = this.TypeValue;
-    this.echartsInit.setOption(this.myOptions, true);
-    this.showEdit = false;
-    this.XxesValue = '';
-    this.YxesValue = '';
-
-
-    // // let Yvalue = this.YxesValue.trim();
-    // this.YxesValue = this.YxesValue.split(',');
-    // // console.log(this.YxesValue);
-    // this.myOptions.yAxis.data = this.YxesValue;
-    // this.echartsInit.setOption(this.myOptions, true);
-
-
+      }
+    }
   }
+
 }
