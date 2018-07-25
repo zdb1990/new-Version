@@ -28,6 +28,7 @@ export class ChartsContentComponent implements OnInit, AfterContentInit {
       compactType: 'none',
       margin: 10,
       itemChangeCallback: function (item, itemComponent) {
+        console.log(item);
         let echarts = document.getElementById(`${item.id}`);
         if (echarts) {
           echarts.style.width = itemComponent.width - 30 + 'px';

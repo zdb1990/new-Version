@@ -15,8 +15,8 @@ import { ChartsContentComponent } from './charts-content/charts-content.componen
 import { SelectTreeComponent } from './select-tree/select-tree.component';
 const routes: Routes = [
     {
-        path: 'home-page', component: HomePageComponent, children: [
-            { path: '', redirectTo: '/overview-page', pathMatch: 'full' },
+        path: '', component: HomePageComponent, children: [
+            { path: '', redirectTo: 'overview-page', pathMatch: 'full' },
             { path: 'overview-page', component: OverviewPageComponent },
             { path: 'chart-page', component: ChartPageComponent },
             { path: 'data-echarts', component: DataEchartsComponent }

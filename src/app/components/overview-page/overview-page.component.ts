@@ -24,6 +24,7 @@ export class OverviewPageComponent implements OnInit, AfterContentInit {
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
+        console.log(itemComponent);
         let echarts = document.getElementById(`${item.id}`);
 
         if (echarts) {

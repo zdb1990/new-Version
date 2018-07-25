@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -42,7 +43,7 @@ registerLocaleData(zh);
     AppRoutingModule,
     ServiceModule,
     NgxEchartsModule,
-    GridsterModule
+    GridsterModule,
   ],
   bootstrap: [AppComponent],
   /** 配置 ng-zorro-antd 国际化 **/
