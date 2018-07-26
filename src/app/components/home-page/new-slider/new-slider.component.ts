@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'uxsino-new-slider',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewSliderComponent implements OnInit {
 
-  constructor() { }
+  constructor(router: Router) {
+  }
 
   ngOnInit() {
     this.navList();

@@ -1,12 +1,43 @@
-<gridster [options]="options">
-    <gridster-item [item]="item" *ngFor="let item of dashboard;let i = index;">
-        <div [ngSwitch]="i">
-            <div *ngSwitchCase="'0'">
-                <div echarts [options]="echartsOption1" (chartInit)="onChartInit($event,i)" id="demo1"></div>
-            </div>
-            <div *ngSwitchCase="'1'">
-                <div echarts [options]="echartsOption2" (chartInit)="onChartInit($event,i)" id="demo2"></div>
-            </div>
+<div class="over-page">
+    <div nz-row>
+        <div nz-col nzSpan="15">
+            <nz-row>
+                <div nz-col nzSpan="2">
+                    选择上级:
+                </div>
+                <div nz-col nzSpan="8">
+                    <nz-dropdown (nzVisibleChange)="change($event)" class="drag-box">
+                        <a nz-dropdown class="select-title">
+              admin
+              <i class="anticon anticon-down"></i>
+            </a>
+                        <ul nz-menu>
+                            <li nz-menu-item>1st menu item</li>
+                            <li nz-menu-item>2nd menu item</li>
+                            <li nz-submenu>
+                                <span title>sub menu</span>
+                                <ul class="menu-item">
+                                    <li nz-submenu>
+                                        <span title>dede</span>
+                                        <ul class="menu-item">
+                                            <li nz-menu-item>3rd menu item</li>
+                                            <li nz-menu-item>4th menu item</li>
+                                        </ul>
+                                    </li>
+                                    <li nz-menu-item>4th menu item</li>
+                                </ul>
+                            </li>
+                            <li nz-submenu>
+                                <span title>disabled sub menu</span>
+                                <ul class="menu-item">
+                                    <li nz-menu-item>3rd menu item</li>
+                                    <li nz-menu-item>4th menu item</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nz-dropdown>
+                </div>
+            </nz-row>
         </div>
-    </gridster-item>
-</gridster>
+    </div>
+</div>

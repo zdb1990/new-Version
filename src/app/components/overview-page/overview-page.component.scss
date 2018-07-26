@@ -1,1 +1,17 @@
-
+:host::ng-deep {
+    .drag-box {
+        width: 300px;
+        background: #ffffff;
+        line-height: 30px;
+        .select-title {
+            display: block;
+            line-height: 30px;
+            padding: 0 10px;
+            .anticon-down {
+                float: right;
+                margin-top: 8px;
+                font-size: 14px;
+            }
+        }
+    }
+}

@@ -67,7 +67,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
     if (localStorage.getItem('position')) {
       // console.log(localStorage.getItem('position'));
       let item = JSON.parse(localStorage.getItem('position'));
-      console.log(item);
+      // console.log(item);
       this.dashboard = item;
     } else {
       this.dashboard = [
@@ -83,7 +83,6 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
-        console.log(item);
         for (let i = 0; i < self.dashboard.length; i++) {
           if (item.id.indexOf(self.dashboard[i].id) !== -1) {
             self.dashboard[i] = item;
@@ -118,7 +117,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       },
       swap: true,
       pushItems: true,
-      displayGrid: 'always'
+      displayGrid: 'none'
     };
 
 
