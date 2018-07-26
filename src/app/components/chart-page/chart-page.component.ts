@@ -18,6 +18,10 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
   echarts1: any;
   echarts2: any;
   itemarr: any = [];
+  demo1arr: any = [];
+  demo2arr: any = [];
+  demo3arr: any = [];
+  allarr: any = [];
   dataBJ: any = [
     [55, 9, 56, 0.46, 18, 6, 1],
     [25, 11, 21, 0.65, 34, 9, 2],
@@ -73,30 +77,26 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
-        let arr = [];
-        console.log(item);
+        // console.log(item);
         self.itemarr.push(item);
-        console.log(self.itemarr);
-        for (let i = 0; i < self.itemarr.length; i++) {
-          if (self.itemarr[i].id === 'demo1') {
-            arr.push(i);
-            for (let j = 0; j < arr.lenght; i++) {
-              var index = 0;
-              if (index < arr[j]) {
-                index = arr[j];
-              }
+        if (self.itemarr.length > 0) {
+          for (let i = 0; i < self.itemarr.length; i++) {
+            // console.log(self.dashboard[i].id);
+            if ('demo1'.indexOf(self.itemarr[i].id) !== -1) {
+              self.demo1arr.push(self.itemarr[i]);
+            } else if ('demo2'.indexOf(self.itemarr[i].id) !== -1) {
+              self.demo2arr.push(self.itemarr[i]);
+            } else if ('demo3'.indexOf(self.itemarr[i].id) !== -1) {
+              self.demo3arr.push(self.itemarr[i]);
             }
           }
-
         }
-        console.log(arr);
-        // if (item.id === 'demo1') {
-        //   item = JSON.stringify(item);
-        //   localStorage.setItem('demo1', item);
-        // }
-        // let arr={'demo1':}
-        let echarts = document.getElementById(`${item.id}`);
 
+        console.log(self.demo1arr, self.demo1arr[self.demo1arr.length - 1]);
+        console.log(self.demo2arr, self.demo2arr[self.demo2arr.length - 1]);
+        console.log(self.demo3arr, self.demo3arr[self.demo3arr.length - 1]);
+
+        let echarts = document.getElementById(`${item.id}`);
         if (echarts) {
           echarts.style.width = itemComponent.width - 50 + 'px';
           echarts.style.height = itemComponent.height - 50 + 'px';
