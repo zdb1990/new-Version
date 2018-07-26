@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { GetEchartsService } from '../../service/getEcharts.service';
+import { group } from '../../../../node_modules/@angular/animations';
 
 @Component({
   selector: 'uxsino-chart-page',
@@ -10,18 +11,14 @@ import { GetEchartsService } from '../../service/getEcharts.service';
 export class ChartPageComponent implements OnInit, AfterContentInit {
 
   options: GridsterConfig;
-  dashboard: Array<GridsterItem>;
+  dashboard: any;
   public echartsInstance0: any;
   public echartsInstance1: any;
   public echartsInstance2: any;
   echarts0: any;
   echarts1: any;
   echarts2: any;
-  itemarr: any = [];
-  demo1arr: any = [];
-  demo2arr: any = [];
-  demo3arr: any = [];
-  allarr: any = [];
+  Init: any;
   dataBJ: any = [
     [55, 9, 56, 0.46, 18, 6, 1],
     [25, 11, 21, 0.65, 34, 9, 2],
@@ -67,35 +64,31 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     // console.log(localStorage.getItem('demo1'));
-    // if (localStorage.getItem('demo1')) {
-    //   let item = JSON.parse(localStorage.getItem('demo1'));
-    //   this.dashboard[0] = item;
-    // }
+    if (localStorage.getItem('position')) {
+      // console.log(localStorage.getItem('position'));
+      let item = JSON.parse(localStorage.getItem('position'));
+      console.log(item);
+      this.dashboard = item;
+    } else {
+      this.dashboard = [
+        { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' },
+        { cols: 2, rows: 1, y: 0, x: 3, id: 'demo2', lable: 'Pie Title' },
+        { cols: 2, rows: 1, y: 1, x: 3, id: 'demo3', lable: 'Dashboard Title' }
+      ];
+    }
+
     let self = this;
     this.options = {
       gridType: 'fit',
       compactType: 'none',
       // // 当元素改变时
       itemChangeCallback: function (item, itemComponent) {
-        // console.log(item);
-        self.itemarr.push(item);
-        if (self.itemarr.length > 0) {
-          for (let i = 0; i < self.itemarr.length; i++) {
-            // console.log(self.dashboard[i].id);
-            if ('demo1'.indexOf(self.itemarr[i].id) !== -1) {
-              self.demo1arr.push(self.itemarr[i]);
-            } else if ('demo2'.indexOf(self.itemarr[i].id) !== -1) {
-              self.demo2arr.push(self.itemarr[i]);
-            } else if ('demo3'.indexOf(self.itemarr[i].id) !== -1) {
-              self.demo3arr.push(self.itemarr[i]);
-            }
+        console.log(item);
+        for (let i = 0; i < self.dashboard.length; i++) {
+          if (item.id.indexOf(self.dashboard[i].id) !== -1) {
+            self.dashboard[i] = item;
           }
         }
-
-        console.log(self.demo1arr, self.demo1arr[self.demo1arr.length - 1]);
-        console.log(self.demo2arr, self.demo2arr[self.demo2arr.length - 1]);
-        console.log(self.demo3arr, self.demo3arr[self.demo3arr.length - 1]);
-
         let echarts = document.getElementById(`${item.id}`);
         if (echarts) {
           echarts.style.width = itemComponent.width - 50 + 'px';
@@ -103,6 +96,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
           let dom = { 'demo1': self.echartsInstance0, 'demo2': self.echartsInstance1, 'demo3': self.echartsInstance2 };
           dom[item.id].resize();
         }
+        localStorage.setItem('position', JSON.stringify(self.dashboard);
       },
       itemResizeCallback: function (item, itemComponent) {
         // console.log(item);
@@ -126,11 +120,8 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
       pushItems: true,
       displayGrid: 'always'
     };
-    this.dashboard = [
-      { cols: 3, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' },
-      { cols: 2, rows: 1, y: 0, x: 3, id: 'demo2', lable: 'Pie Title' },
-      { cols: 2, rows: 1, y: 1, x: 3, id: 'demo3', lable: 'Dashboard Title' }
-    ];
+
+
   }
   ngAfterContentInit() {
     this.echarts0 = {
@@ -368,16 +359,6 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
     //   this.newMethod();
     // }, 1000);
   }
-  // private newMethod() {
-  //   console.log(this.echartsInstance3);
-  //   if (this.echartsInstance3) {
-  //     this.echartsthree.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-  //     this.echartsInstance3.setOption(this.echartsthree, true);
-  //   }
-
-
-
-  // }
 
   onChartInit(e: any, i: number) {
     // this.eventValue = e;
