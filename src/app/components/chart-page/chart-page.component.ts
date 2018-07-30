@@ -87,7 +87,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
           if (item.id.indexOf(self.dashboard[i].id) !== -1) {
             self.dashboard[i] = item;
           }
-        }
+        };
         let echarts = document.getElementById(`${item.id}`);
         if (echarts) {
           echarts.style.width = itemComponent.width - 50 + 'px';
@@ -95,7 +95,7 @@ export class ChartPageComponent implements OnInit, AfterContentInit {
           let dom = { 'demo1': self.echartsInstance0, 'demo2': self.echartsInstance1, 'demo3': self.echartsInstance2 };
           dom[item.id].resize();
         }
-        localStorage.setItem('position', JSON.stringify(self.dashboard);
+        localStorage.setItem('position', JSON.stringify(self.dashboard));
       },
       itemResizeCallback: function (item, itemComponent) {
         // console.log(item);
