@@ -1,31 +1,13 @@
-<div class="new-slider">
-    <ul class="mena">
-        <li class="mene-item" [routerLink]="['/overview-page']">
-            <span>
-        <i class="anticon anticon-mail"></i>
-      </span>
-            <div class="title">
-                <span class="tooger"></span>主页
-            </div>
-            <div class="line"></div>
-        </li>
-        <li class="mene-item" [routerLink]="['/chart-page']">
-            <span>
-        <i class="anticon anticon-appstore"></i>
-      </span>
-            <div class="title">
-                <span class="tooger"></span>磁盘
-            </div>
-            <div class="line"></div>
-        </li>
-        <li class="mene-item" [routerLink]="['/data-echarts']">
-            <span>
-        <i class="anticon anticon-setting"></i>
-      </span>
-            <div class="title">
-                <span class="tooger"></span>权限
-            </div>
-            <div class="line"></div>
+<ng-container>
+    <ul class="nav-list">
+        <li *ngFor="let nav of navList;let i=index" class="list-item" (mousedown)="tab(i,$event)" (click)="openItem(i)">
+            <i class="anticon anticon-{{nav.icon}}"></i> {{nav.name}}
+            <span [hidden]="i==0 || i==navList.length-1" class="open-item"><i class="anticon {{navList[i].edit ? 'anticon-plus-square-o':'anticon-minus-square-o'}}"></i></span>
+            <div class="add-operation" *ngIf="nav.name=='数据中心池' && selectIndex==1"><span>添加数据中心</span></div>
+            <div class="add-operation" *ngIf="nav.name=='存储' && selectIndex==4"><span>添加存储服务</span></div>
+            <ul class="nav-list-children" [hidden]="i==0 || i==navList.length-1">
+                <li class="list-item-children">1</li>
+            </ul>
         </li>
     </ul>
-</div>
+</ng-container>

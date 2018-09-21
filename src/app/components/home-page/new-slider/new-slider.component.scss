@@ -1,63 +1,48 @@
 :host::ng-deep {
-    .new-slider {
+    .nav-list {
         height: 100%;
-        background-color: #04092d;
-    }
-    .item {
-        width: 100px;
-    }
-    .mene-item {
-        position: relative;
-        line-height: 52px;
-        text-align: center;
-        font-size: 20px;
-        color: #ffffff;
-        transition: 1s all ease;
-        .line {
-            width: 5px;
-            height: 52px;
-            background-color: #438fd5;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: none;
-        }
-        &:hover {
-            background-color: #162d59; // .line {
-            //     display: block;
-            // }
-            .title {
-                display: block;
+        background-color: #999999;
+        .list-item {
+            line-height: 50px;
+            font-size: 16px;
+            color: #ffffff;
+            padding-left: 10px;
+            box-sizing: border-box;
+            position: relative;
+            &:hover {
+                background-color: #666666;
+            }
+            //添加操作
+            .add-operation {
+                width: 200px;
+                line-height: 30px;
+                font-size: 12px;
+                position: absolute;
+                top: 30px;
+                left: 100px;
+                background: #ffffff;
+                color: #000;
+                padding-left: 10px;
+                box-sizing: border-box;
+                z-index: 100;
+                &:hover {
+                    color: #ffffff;
+                    background-color: #000;
+                }
+            }
+            //子集列表
+            .nav-list-children {
+                background: #000;
+                display: none;
+                .list-item-children {
+                    padding-left: 15px;
+                    box-sizing: border-box;
+                }
             }
         }
-    }
-    .title {
-        position: absolute;
-        top: 15px;
-        left: 80px;
-        width: 60px;
-        line-height: 30px;
-        text-align: center;
-        background-color: #1a3f83;
-        border-radius: 5px;
-        display: none;
-        font-size: 14px;
-        z-index: 100;
-        .tooger {
-            width: 0px;
-            height: 0px;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-right: 8px solid #1a3f83;
-            position: absolute;
-            top: 7px;
-            left: -8px;
+        .open-item {
+            float: right;
+            margin-right: 10px;
         }
-    }
-    .active {
-        background-color: #162d59;
-    }
-    .line-active {
-        display: block !important;
     }
 }

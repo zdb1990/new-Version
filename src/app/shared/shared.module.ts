@@ -1,3 +1,4 @@
+// import { OpenItemDirective } from './open-item.directive';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // 引入ngfor ngif指令所需的module;
@@ -14,6 +15,7 @@ import { CookieModule } from 'ngx-cookie';
 import { GridsterModule } from 'angular-gridster2';
 // 配置路由
 import { RouterModule } from '@angular/router';
+
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
 @NgModule({

@@ -1,3 +1,4 @@
+import { OpenItemDirective } from './../shared/open-item.directive';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsRoutingModule, routedComponents } from './components-routing.module';
@@ -9,7 +10,7 @@ import { ComponentsRoutingModule, routedComponents } from './components-routing.
         ComponentsRoutingModule
     ],
     exports: [],
-    declarations: [...routedComponents],
+    declarations: [...routedComponents, OpenItemDirective],
     providers: [],
 })
 export class ComponentsModule { }

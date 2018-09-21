@@ -1,53 +1,94 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-
+import { NzFormatEmitEvent, NzTreeNode } from 'ng-zorro-antd';
 @Component({
   selector: 'uxsino-select-tree',
   templateUrl: './select-tree.component.html',
   styleUrls: ['./select-tree.component.scss']
 })
 export class SelectTreeComponent implements OnInit {
-  showTitle: Boolean = false;
-  showMenu: Boolean = false;
-  activeIndex: Number = 0;
-  @Output() private changedispach = new EventEmitter();
-  listData: any = [
-    { name: '查看', icon: 'eye-o' },
-    { name: '编辑', icon: 'edit' },
-    { name: '分享', icon: 'windows-o' },
+  isOpen: Boolean = false;
+  value: string;
+  treeList: any;
+  data: any = [
     {
-      name: '更多', icon: 'appstore', children: [
-        { title: '重复' },
-        { title: '复制' },
-        { title: 'json' },
-        { title: '导出CSV' },
-        { title: '切换' },
+      title: 'root1',
+      id: '1001',
+      children: [
+        {
+          title: 'child1',
+          id: '10001',
+          children: [
+            {
+              title: 'child1.1',
+              id: '100011',
+              children: []
+            },
+            {
+              title: 'child1.2',
+              id: '100012',
+              children: [
+                {
+                  title: 'grandchild1.2.1',
+                  id: '1000121',
+                },
+                {
+                  title: 'grandchild1.2.2',
+                  id: '1000122',
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
-    { name: '删除', icon: 'delete' },
-    { name: '返回', icon: 'retweet' }
+    {
+      title: 'root2',
+      id: '1002',
+      children: [
+        {
+          title: 'child2.1',
+          id: '10021',
+          children: [],
+        },
+        {
+          title: 'child2.2',
+          id: '10022',
+          children: [
+            {
+              title: 'grandchild2.2.1',
+              id: '100221'
+            }
+          ]
+        }
+      ]
+    }
   ];
-
-
+  nodes: any;
   constructor() { }
 
   ngOnInit() {
-  }
-  showMenubox() {
-    this.showMenu = !this.showMenu;
-  }
-  showtitle(index) {
-    this.activeIndex = index;
-    this.showTitle = true;
-  }
-  operation(value) {
-    console.log(value);
-    if (value === '查看') {
-      this.changedispach.emit([{ cols: 5, rows: 2, y: 0, x: 0, id: 'demo1', lable: 'Radar Title' }]);
-    } else if (value === '返回') {
-      this.changedispach.emit('default');
-    } else if (value === '编辑') {
-      this.changedispach.emit('edit');
-      this.showMenu = false;
+    // this.treeNode(this.data);
+    let treeNode = this.treeNode(this.data);
+    // tslint:disable-next-line:forin
+    this.treeList = [];
+    // tslint:disable-next-line:forin
+    for (const i in treeNode) {
+      this.treeList.push(new NzTreeNode(treeNode[i]));
     }
+    this.nodes = this.treeList;
+  }
+  treeNode(arr) {
+    // console.log(arr);
+    // tslint:disable-next-line:forin
+    for (const i in arr) {
+      arr[i]['key'] = arr[i].id;
+      if (arr[i].children && arr[i].children.length > 0) {
+        this.treeNode(arr[i].children);
+      }
+    }
+    return arr;
+  }
+  onChange(value) {
+    console.log(value);
   }
 }

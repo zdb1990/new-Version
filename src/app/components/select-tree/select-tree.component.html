@@ -1,22 +1,2 @@
-<div class="select-box">
-    <div class="select-title">
-        <span class="title" (click)="showMenubox()">操作
-      <i class="anticon anticon-caret-down"></i>
-    </span>
-    </div>
-    <ul class="select-content" *ngIf="showMenu">
-        <li *ngFor="let item of listData;let i=index" (mouseover)="showtitle(i)" [ngClass]="activeIndex==i ? 'active':''" (click)="operation(item?.name)">
-            <span>
-        <i class="anticon anticon-{{item?.icon}}"></i>{{item?.name}}
-      </span>
-            <span *ngIf="item.children&&showTitle && activeIndex==3" class="Menu">
-        <i class="anticon anticon-caret-right"></i>
-      </span>
-            <ul class="children-select-box" *ngIf="item.children&&showTitle&&activeIndex==3">
-                <li *ngFor="let i of item.children">
-                    <span>{{i.title}}</span>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<nz-tree-select style="width: 250px" [nzDefaultExpandedKeys]="expandKeys" [nzNodes]="nodes" nzShowSearch nzPlaceHolder="Please select" [(ngModel)]="value" (ngModelChange)="onChange($event)">
+</nz-tree-select>

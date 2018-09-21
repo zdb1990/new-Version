@@ -1,61 +1,35 @@
 :host::ng-deep {
-    .slider {
+    .nav {
         height: 100%;
-        background-color: #04092d;
-    }
-    .item {
-        width: 100px;
-    }
-    .mene-item {
-        position: relative;
-        line-height: 52px;
-        text-align: center;
-        font-size: 20px;
-        color: #ffffff;
-        .line {
-            width: 5px;
-            height: 52px;
-            background-color: #438fd5;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: none;
-        }
-        &:hover {
-            background-color: #162d59; // .line {
-            //     display: block;
-            // }
-            .title {
+        background-color: darkgrey;
+        .nav-item {
+            font-size: 16px;
+            position: relative;
+            .item-box {
+                line-height: 50px;
+                padding-left: 20px;
+                box-sizing: border-box;
+                &:hover {
+                    background: #ffffff;
+                }
+            }
+            .item-icon {
+                margin-right: 10px;
+            }
+            .open-item {
+                position: absolute;
+                right: 10px;
+            }
+            //子集
+            .nav-item-children {
+                background-color: antiquewhite;
+                padding-left: 40px;
+                box-sizing: border-box;
+                display: none;
+            }
+            .active {
                 display: block;
             }
         }
-    }
-    .title {
-        position: absolute;
-        top: 15px;
-        left: 80px;
-        width: 60px;
-        line-height: 30px;
-        text-align: center;
-        background-color: #1a3f83;
-        border-radius: 5px;
-        display: none;
-        font-size: 14px;
-        .triangle {
-            width: 0px;
-            height: 0px;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-right: 8px solid #1a3f83;
-            position: absolute;
-            top: 7px;
-            left: -8px;
-        }
-    }
-    .active {
-        background-color: #162d59;
-    }
-    .line-active {
-        display: block !important;
     }
 }
