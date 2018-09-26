@@ -1,35 +1,46 @@
 :host::ng-deep {
-    .nav {
-        height: 100%;
-        background-color: darkgrey;
-        .nav-item {
-            font-size: 16px;
-            position: relative;
-            .item-box {
-                line-height: 50px;
-                padding-left: 20px;
-                box-sizing: border-box;
-                &:hover {
-                    background: #ffffff;
-                }
-            }
-            .item-icon {
-                margin-right: 10px;
-            }
-            .open-item {
-                position: absolute;
-                right: 10px;
-            }
-            //子集
-            .nav-item-children {
-                background-color: antiquewhite;
-                padding-left: 40px;
-                box-sizing: border-box;
-                display: none;
-            }
-            .active {
-                display: block;
-            }
+  .nav {
+    height: 100%;
+    background-color: darkgrey;
+
+    .nav-item {
+      font-size: 16px;
+      position: relative;
+
+      .item-box {
+        line-height: 50px;
+        padding-left: 20px;
+        box-sizing: border-box;
+
+        &:hover {
+          background: #ffffff;
         }
+      }
+
+      .item-icon {
+        margin-right: 10px;
+      }
+
+      .open-item {
+        position: absolute;
+        right: 10px;
+      }
+
+      //子集
+      .nav-item-children {
+        background-color: antiquewhite;
+        padding-left: 40px;
+        box-sizing: border-box;
+        display: none;
+
+        .nav-item-last {
+          display: none;
+        }
+      }
+
+      .active {
+        display: block;
+      }
     }
+  }
 }
